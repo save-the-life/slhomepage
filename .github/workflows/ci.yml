@@ -1,0 +1,45 @@
+name: CI
+
+# Deploys are handled by the Vercel Git integration, not here — running both
+# would produce two production deployments per push. This workflow is the gate
+# that runs before/alongside that deploy.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify static site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # No dependencies to install: the site has no build step and the checker
+      # is plain Node, so this stays a few seconds.
+      - name: Run checks
+        run: node scripts/verify.mjs
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "### ✅ Static site checks passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ Static site checks failed" >> $GITHUB_STEP_SUMMARY
+            echo "See the *Run checks* step for the list." >> $GITHUB_STEP_SUMMARY
+          fi
+          {
+            echo ""
+            echo "Covers markup balance, internal links and images, JSON-LD validity,"
+            echo "the Vercel Analytics tag, i18n key coverage across all 6 locales,"
+            echo "inline-tag balance inside translations, and sitemap entries."
+          } >> $GITHUB_STEP_SUMMARY
