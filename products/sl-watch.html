@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="sl-watch">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +13,14 @@
 <meta property="og:image" content="https://www.savethelife.io/img/og-image.png" />
 <meta property="og:url" content="https://www.savethelife.io/products/sl-watch" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="en" href="https://www.savethelife.io/products/sl-watch" />
+<link rel="alternate" hreflang="ko" href="https://www.savethelife.io/products/sl-watch?lang=ko" />
+<link rel="alternate" hreflang="zh-CN" href="https://www.savethelife.io/products/sl-watch?lang=zh" />
+<link rel="alternate" hreflang="ja" href="https://www.savethelife.io/products/sl-watch?lang=ja" />
+<link rel="alternate" hreflang="es" href="https://www.savethelife.io/products/sl-watch?lang=es" />
+<link rel="alternate" hreflang="ru" href="https://www.savethelife.io/products/sl-watch?lang=ru" />
+<link rel="alternate" hreflang="vi" href="https://www.savethelife.io/products/sl-watch?lang=vi" />
+<link rel="alternate" hreflang="x-default" href="https://www.savethelife.io/products/sl-watch" />
 <link rel="icon" type="image/png" href="../img/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,6 +35,7 @@ tailwind.config={theme:{extend:{
   html{scroll-behavior:smooth} html,body{overflow-x:hidden;max-width:100%} img{max-width:100%}
   body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  :lang(ko) body, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3{word-break:keep-all}
   .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:12px}
   .imgslot{position:relative;overflow:hidden;min-width:0;background:radial-gradient(120% 100% at 0% 0%,rgba(34,211,238,.16),transparent 55%),linear-gradient(135deg,#0B1F3A,#0E2C46 60%,#12384f)}
   .imgslot>img{width:100%;height:100%;object-fit:cover;display:block}
@@ -35,22 +44,35 @@ tailwind.config={theme:{extend:{
   .ecg-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
   .ecg-track{display:flex;width:200%;animation:ecg 6s linear infinite}@keyframes ecg{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .kbd{font-variant-numeric:tabular-nums}
+  .lang-sel{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235B6B7F' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .6rem center;padding-right:1.6rem}
+  :where(a,button):focus-visible{outline:2px solid #22D3EE;outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body class="bg-white text-navy">
 
-<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4">SL Watch is a wellness product, not a medical device, and cannot determine the presence of disease.</div>
+<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4" data-i18n="sw-disc">SL Watch is a wellness product, not a medical device, and cannot determine the presence of disease.</div>
 
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
-  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
+  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy shrink-0"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
     <div class="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate2">
       <a href="sl-watch.html" class="text-navy">SL Watch</a>
-      <a href="vetdental-ai.html" class="hover:text-navy transition">VetDental AI</a>
+      <a href="vetdental-ai.html" class="hover:text-navy transition">Pet Tooth AI</a>
       <a href="medireport.html" class="hover:text-navy transition">MediReport</a>
       <a href="../index.html#token" class="hover:text-navy transition">$SL</a>
     </div>
-    <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition">← Home</a>
+    <div class="flex items-center gap-3 shrink-0">
+      <select class="lang-sel rounded-lg border border-line bg-white text-[12px] font-semibold text-navy pl-2.5 py-1.5 cursor-pointer" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="zh">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="es">Español</option>
+        <option value="ru">Русский</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+      <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition" data-i18n="p-home2">← Home</a>
+    </div>
   </nav>
 </header>
 
@@ -59,14 +81,14 @@ tailwind.config={theme:{extend:{
   <div class="glow bg-teal/25 w-[480px] h-[480px] -top-32 -right-24"></div>
   <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-14 items-center">
     <div class="min-w-0">
-      <div class="eyebrow text-teal mb-4">Proof Network #3 · SL Watch</div>
-      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy">Medical-grade ECG,<br>on your wrist.</h1>
-      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg">A 125&nbsp;Hz ECG sensor and an on-device AI screen for abnormal heart-rhythm patterns every 10 seconds — built on a 4-year clinical study with <b class="text-navy">AUROC 0.88</b>.</p>
+      <div class="eyebrow text-teal mb-4" data-i18n="sw-eyebrow">Proof Network #3 · SL Watch</div>
+      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy" data-i18n="sw-h1">Medical-grade ECG,<br>on your wrist.</h1>
+      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg" data-i18n="sw-lede">A 125&nbsp;Hz ECG sensor and an on-device AI screen for abnormal heart-rhythm patterns every 10 seconds — built on a 4-year clinical study with <b class="text-navy">AUROC 0.88</b>.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="../index.html#partner" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft">Become a First Guardian →</a>
-        <a href="../whitepaper.pdf" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition">Read the Whitepaper</a>
+        <a href="../index.html#partner" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="sw-cta1">Become a First Guardian →</a>
+        <a href="../whitepaper.pdf" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="p-readwp">Read the Whitepaper</a>
       </div>
-      <p class="mt-6 text-[12.5px] text-slate2/80 max-w-lg">Wellness device. Not for diagnosis. Medical-device functions will be offered after KFDA clearance.</p>
+      <p class="mt-6 text-[12.5px] text-slate2/80 max-w-lg" data-i18n="sw-note">Wellness device. Not for diagnosis. Medical-device functions will be offered after KFDA clearance.</p>
     </div>
     <div class="relative min-w-0">
       <div class="imgslot rounded-[26px] aspect-square shadow-2xl shadow-navy/25"><img src="../img/hero-watch.webp" alt="SL Watch"></div>
@@ -84,12 +106,12 @@ tailwind.config={theme:{extend:{
 <!-- HOW IT WORKS -->
 <section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20">
-    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy mb-10">How it works</h2>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy mb-10" data-i18n="sw-howh2">How it works</h2>
     <div class="grid sm:grid-cols-4 gap-5">
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">01</div><div class="font-semibold text-navy">Wear</div><p class="mt-1 text-slate2 text-[14px]">A 125&nbsp;Hz ECG sensor measures your heart rhythm continuously.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">02</div><div class="font-semibold text-navy">Analyze</div><p class="mt-1 text-slate2 text-[14px]">A CNN-LSTM model screens for abnormal patterns every 10 seconds, on-device.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">03</div><div class="font-semibold text-navy">Alert</div><p class="mt-1 text-slate2 text-[14px]">On an abnormal signal, the watch alerts you and (opt-in) a guardian.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">04</div><div class="font-semibold text-navy">Consult</div><p class="mt-1 text-slate2 text-[14px]">Screening support only — a licensed professional makes the medical call.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">01</div><div class="font-semibold text-navy" data-i18n="sw-s1t">Wear</div><p class="mt-1 text-slate2 text-[14px]" data-i18n="sw-s1d">A 125&nbsp;Hz ECG sensor measures your heart rhythm continuously.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">02</div><div class="font-semibold text-navy" data-i18n="sw-s2t">Analyze</div><p class="mt-1 text-slate2 text-[14px]" data-i18n="sw-s2d">A CNN-LSTM model screens for abnormal patterns every 10 seconds, on-device.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">03</div><div class="font-semibold text-navy" data-i18n="sw-s3t">Alert</div><p class="mt-1 text-slate2 text-[14px]" data-i18n="sw-s3d">On an abnormal signal, the watch alerts you and (opt-in) a guardian.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">04</div><div class="font-semibold text-navy" data-i18n="sw-s4t">Consult</div><p class="mt-1 text-slate2 text-[14px]" data-i18n="sw-s4d">Screening support only — a licensed professional makes the medical call.</p></div>
     </div>
   </div>
 </section>
@@ -98,31 +120,31 @@ tailwind.config={theme:{extend:{
 <section class="bg-paper">
   <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12">
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">Hardware</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="sw-hwh2">Hardware</h2>
       <div class="rounded-2xl border border-line bg-white overflow-hidden">
         <table class="w-full text-[14px]">
           <tbody class="divide-y divide-line">
-            <tr><td class="p-4 text-slate2">ECG sampling</td><td class="p-4 font-semibold text-navy">125 Hz high-precision</td></tr>
-            <tr><td class="p-4 text-slate2">Sensors</td><td class="p-4 font-semibold text-navy">ECG · BP · SpO₂ · HR · temp · steps</td></tr>
-            <tr><td class="p-4 text-slate2">Battery</td><td class="p-4 font-semibold text-navy">72-hour continuous</td></tr>
-            <tr><td class="p-4 text-slate2">Water resistance</td><td class="p-4 font-semibold text-navy">IP68 (50 m)</td></tr>
-            <tr><td class="p-4 text-slate2">Connectivity</td><td class="p-4 font-semibold text-navy">Bluetooth 5.2 + Wi-Fi</td></tr>
-            <tr><td class="p-4 text-slate2">Display</td><td class="p-4 font-semibold text-navy">1.3" AMOLED round</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw1">ECG sampling</td><td class="p-4 font-semibold text-navy" data-i18n="sw-hw1v">125 Hz high-precision</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw2">Sensors</td><td class="p-4 font-semibold text-navy" data-i18n="sw-hw2v">ECG · BP · SpO₂ · HR · temp · steps</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw3">Battery</td><td class="p-4 font-semibold text-navy" data-i18n="sw-hw3v">72-hour continuous</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw4">Water resistance</td><td class="p-4 font-semibold text-navy">IP68 (50 m)</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw5">Connectivity</td><td class="p-4 font-semibold text-navy">Bluetooth 5.2 + Wi-Fi</td></tr>
+            <tr><td class="p-4 text-slate2" data-i18n="sw-hw6">Display</td><td class="p-4 font-semibold text-navy" data-i18n="sw-hw6v">1.3" AMOLED round</td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">The AI</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="sw-aih2">The AI</h2>
       <div class="rounded-2xl border border-line bg-white p-6">
-        <p class="text-slate2 text-[15px] leading-relaxed">A CNN-LSTM model developed over 4 years with <b class="text-navy">Gachon University</b> and <b class="text-navy">Seoul National University Hospital</b>, trained on <b class="text-navy">204,000+ ECG segments</b>.</p>
+        <p class="text-slate2 text-[15px] leading-relaxed" data-i18n="sw-aid">A CNN-LSTM model developed over 4 years with <b class="text-navy">Gachon University</b> and <b class="text-navy">Seoul National University Hospital</b>, trained on <b class="text-navy">204,000+ ECG segments</b>.</p>
         <div class="mt-5 grid grid-cols-2 gap-3 text-center">
           <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.88</div><div class="text-[12px] text-slate2">AUROC</div></div>
-          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.83</div><div class="text-[12px] text-slate2">Sensitivity</div></div>
-          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.84</div><div class="text-[12px] text-slate2">F1 score</div></div>
-          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.80</div><div class="text-[12px] text-slate2">Accuracy</div></div>
+          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.83</div><div class="text-[12px] text-slate2" data-i18n="sw-m2">Sensitivity</div></div>
+          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.84</div><div class="text-[12px] text-slate2" data-i18n="sw-m3">F1 score</div></div>
+          <div class="rounded-xl bg-paper p-4"><div class="text-2xl font-display font-extrabold text-teal">0.80</div><div class="text-[12px] text-slate2" data-i18n="sw-m4">Accuracy</div></div>
         </div>
-        <p class="mt-4 text-[12px] text-slate2/80">Figures on a clinical-research basis. KFDA SaMD certification in progress. Until certification, described as screening support, not diagnosis.</p>
+        <p class="mt-4 text-[12px] text-slate2/80" data-i18n="sw-ainote">Figures on a clinical-research basis. KFDA SaMD certification in progress. Until certification, described as screening support, not diagnosis.</p>
       </div>
     </div>
   </div>
@@ -132,20 +154,21 @@ tailwind.config={theme:{extend:{
 <section class="bg-ink text-white grid-bg">
   <div class="max-w-content mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-6">
     <div>
-      <h2 class="text-[24px] sm:text-[30px] font-extrabold">Powered by $SL credits</h2>
-      <p class="mt-2 text-white/65">AI cardiac monitoring 10 SL · wellness screening 5 SL per use.</p>
+      <h2 class="text-[24px] sm:text-[30px] font-extrabold" data-i18n="sw-slh2">Powered by $SL credits</h2>
+      <p class="mt-2 text-white/65" data-i18n="sw-sld">AI cardiac monitoring 10 SL · wellness screening 5 SL per use.</p>
     </div>
-    <a href="../index.html#token" class="rounded-xl bg-teal text-navy font-bold px-6 py-3.5 hover:bg-teal/90 transition shrink-0">About $SL →</a>
+    <a href="../index.html#token" class="rounded-xl bg-teal text-navy font-bold px-6 py-3.5 hover:bg-teal/90 transition shrink-0" data-i18n="sw-slcta">About $SL →</a>
   </div>
 </section>
 
 <footer class="bg-ink text-white/55 border-t border-white/10">
   <div class="max-w-content mx-auto px-6 py-10 text-[13px] flex flex-col sm:flex-row justify-between gap-4">
     <div>© 2026 SL Labs · $SL on opBNB (BNB Chain L2)</div>
-    <div class="flex gap-6"><a href="../index.html" class="hover:text-white">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white">Whitepaper</a></div>
+    <div class="flex gap-6"><a href="../index.html" class="hover:text-white" data-i18n="p-home">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white" data-i18n="p-wp">Whitepaper</a></div>
   </div>
-  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35">Not investment advice. SL Watch is a wellness device and cannot determine the presence of disease.</div>
+  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35" data-i18n="sw-legal">Not investment advice. SL Watch is a wellness device and cannot determine the presence of disease.</div>
 </footer>
+<script src="products-i18n.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

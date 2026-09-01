@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="medireport">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MediReport — LLM check-up reports patients act on | SL Labs</title>
-<meta name="description" content="MediReport: LLM-generated health check-up reports for screening centers. Metered or Enterprise Credit Pack." />
+<title>MediReport — Screening results explained in plain language | SL Labs</title>
+<meta name="description" content="MediReport reads a hospital's health-screening results and has AI write what each test means in plain language — group-level analysis, year-on-year comparison, an overall opinion and a printable result notice." />
 <link rel="canonical" href="https://www.savethelife.io/products/medireport" />
 <meta property="og:site_name" content="SL Labs" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="MediReport — LLM check-up reports patients act on | SL Labs" />
-<meta property="og:description" content="LLM-generated health check-up reports for screening centers. Metered or Enterprise Credit Pack." />
+<meta property="og:title" content="MediReport — Screening results explained in plain language | SL Labs" />
+<meta property="og:description" content="AI-written screening result explanations and result notices for hospital screening centres." />
 <meta property="og:image" content="https://www.savethelife.io/img/og-image.png" />
 <meta property="og:url" content="https://www.savethelife.io/products/medireport" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="en" href="https://www.savethelife.io/products/medireport" />
+<link rel="alternate" hreflang="ko" href="https://www.savethelife.io/products/medireport?lang=ko" />
+<link rel="alternate" hreflang="zh-CN" href="https://www.savethelife.io/products/medireport?lang=zh" />
+<link rel="alternate" hreflang="ja" href="https://www.savethelife.io/products/medireport?lang=ja" />
+<link rel="alternate" hreflang="es" href="https://www.savethelife.io/products/medireport?lang=es" />
+<link rel="alternate" hreflang="ru" href="https://www.savethelife.io/products/medireport?lang=ru" />
+<link rel="alternate" hreflang="vi" href="https://www.savethelife.io/products/medireport?lang=vi" />
+<link rel="alternate" hreflang="x-default" href="https://www.savethelife.io/products/medireport" />
 <link rel="icon" type="image/png" href="../img/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,80 +35,169 @@ tailwind.config={theme:{extend:{
   html{scroll-behavior:smooth} html,body{overflow-x:hidden;max-width:100%} img{max-width:100%}
   body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  :lang(ko) body, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3{word-break:keep-all}
   .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:12px}
-  .imgslot{position:relative;overflow:hidden;min-width:0;background:radial-gradient(120% 100% at 0% 0%,rgba(34,211,238,.16),transparent 55%),linear-gradient(135deg,#0B1F3A,#0E2C46 60%,#12384f)}
-  .imgslot>img{width:100%;height:100%;object-fit:cover;display:block}
+  .mono-label{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .shot{position:relative;overflow:hidden;border-radius:16px;background:#0B1220;border:1px solid #E5EBF0}
+  .shot>img{width:100%;height:100%;object-fit:contain;display:block}
   .glow{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.5;pointer-events:none}
+  .chipstack{display:flex;flex-wrap:wrap;gap:.5rem}
+  .chip{border:1px solid #E5EBF0;border-radius:9999px;padding:.4rem .85rem;font-size:13px;font-weight:600;color:#5B6B7F;background:#fff}
+  .lang-sel{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235B6B7F' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .6rem center;padding-right:1.6rem}
+  :where(a,button):focus-visible{outline:2px solid #22D3EE;outline-offset:3px;border-radius:6px}
+  .flowstep{position:relative;padding-left:1.6rem}
+  .flowstep::before{content:"";position:absolute;left:.35rem;top:.55rem;width:7px;height:7px;border-radius:9999px;background:#12B5A5}
+  .flowstep:not(:last-child)::after{content:"";position:absolute;left:.66rem;top:1.3rem;bottom:-.5rem;width:1px;background:#E5EBF0}
 </style>
 </head>
 <body class="bg-white text-navy">
 
-<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4">A documentation-support tool. It does not replace a clinician's interpretation.</div>
+<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4" data-i18n="mr-disc">A documentation-support tool. AI-generated results are for reference and do not replace a clinician's interpretation.</div>
 
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
-  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
+  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy shrink-0"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
     <div class="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate2">
       <a href="sl-watch.html" class="hover:text-navy transition">SL Watch</a>
-      <a href="vetdental-ai.html" class="hover:text-navy transition">VetDental AI</a>
+      <a href="vetdental-ai.html" class="hover:text-navy transition">Pet Tooth AI</a>
       <a href="medireport.html" class="text-navy">MediReport</a>
       <a href="../index.html#token" class="hover:text-navy transition">$SL</a>
     </div>
-    <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition">← Home</a>
+    <div class="flex items-center gap-3 shrink-0">
+      <select class="lang-sel rounded-lg border border-line bg-white text-[12px] font-semibold text-navy pl-2.5 py-1.5 cursor-pointer" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="zh">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="es">Español</option>
+        <option value="ru">Русский</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+      <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition" data-i18n="p-home2">← Home</a>
+    </div>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="relative overflow-hidden bg-paper">
   <div class="glow bg-teal/25 w-[480px] h-[480px] -top-32 -right-24"></div>
-  <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-14 items-center">
+  <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
     <div class="min-w-0">
-      <div class="eyebrow text-teal mb-4">Proof Network #2 · MediReport</div>
-      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy">Reports patients<br>actually act on.</h1>
-      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg">Every year, health check-up results fall asleep in a drawer. MediReport turns raw screening data into a clear, plain-language report that drives a next step — for screening centers and hospitals.</p>
+      <div class="eyebrow text-teal mb-4" data-i18n="mr-eyebrow">Proof Network #2 · MediReport</div>
+      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy" data-i18n="mr-h1">Screening results,<br>in words people read.</h1>
+      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg" data-i18n="mr-lede">A result sheet is a wall of numbers and reference ranges. MediReport pulls a hospital's screening results — blood, urine, imaging, functional tests — and has generative AI write <b class="text-navy">what each one actually means</b>, at the level of the person examined.</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="../index.html#partner" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft">For screening centers →</a>
-        <a href="../whitepaper.pdf" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition">Read the Whitepaper</a>
+        <a href="../index.html#partner" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="mr-cta1">For screening centres →</a>
+        <a href="../whitepaper.pdf" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="p-readwp">Read the Whitepaper</a>
       </div>
+      <p class="mt-7 text-[13px] text-slate2" data-i18n="mr-users">Built for the clinicians and administrators in a hospital screening centre — the people who deliver results to the person examined.</p>
     </div>
-    <div class="imgslot rounded-[26px] aspect-[4/3] shadow-2xl shadow-navy/25 min-w-0"><img src="../img/net-medireport.webp" alt="MediReport"></div>
+    <div class="shot aspect-[1200/991] shadow-2xl shadow-navy/25 min-w-0"><img src="../images/medireport-summary.webp" alt="MediReport overall opinion generated automatically, with findings ordered by urgency" width="1200" height="991"></div>
   </div>
 </section>
 
-<!-- FLOW -->
+<!-- WHAT IT DOES -->
 <section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20">
-    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy mb-10">From data to action</h2>
-    <div class="grid sm:grid-cols-3 gap-5">
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">01 · Ingest</div><p class="text-slate2 text-[14px]">Screening results and imaging summaries are ingested securely, under consent.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">02 · Generate</div><p class="text-slate2 text-[14px]">An LLM drafts a plain-language report with findings and recommended next steps for clinician review.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="text-teal font-display font-bold mb-2">03 · Act</div><p class="text-slate2 text-[14px]">Patients understand and follow up — improving re-visit and early-detection rates.</p></div>
+    <p class="eyebrow text-teal mb-4" data-i18n="mr-whatk">What it does</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight" data-i18n="mr-whath2">Every year, results fall asleep in a drawer.</h2>
+    <div class="mt-10 grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-start">
+      <div class="space-y-5">
+        <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="mr-w1t">Normal findings, said plainly</div><p class="text-slate2 text-[14.5px] leading-relaxed" data-i18n="mr-w1d">Results inside the reference range are explained in a way that lets someone stop worrying about them.</p></div>
+        <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="mr-w2t">Out-of-range findings, with what to do</div><p class="text-slate2 text-[14.5px] leading-relaxed" data-i18n="mr-w2d">Anything outside the reference range comes with its clinical meaning and the department to consult — not just a flag.</p></div>
+        <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="mr-w3t">An overall opinion and a result notice</div><p class="text-slate2 text-[14.5px] leading-relaxed" data-i18n="mr-w3d">Group findings are gathered into one overall opinion, ordered by urgency, and typeset into a result notice ready to hand over.</p></div>
+      </div>
+      <div class="rounded-2xl bg-paper border border-line p-7">
+        <div class="mono-label text-slate2 mb-5" data-i18n="mr-flowk">The flow</div>
+        <div class="space-y-4 text-[14.5px] text-navy font-medium">
+          <div class="flowstep" data-i18n="mr-fl1">Sign in with hospital code and account</div>
+          <div class="flowstep" data-i18n="mr-fl2">Pick a screening date and a patient</div>
+          <div class="flowstep" data-i18n="mr-fl3">Run the AI analysis — test groups in parallel</div>
+          <div class="flowstep" data-i18n="mr-fl4">Review results by group: risk, summary, recommendation</div>
+          <div class="flowstep" data-i18n="mr-fl5">Check the year-on-year comparison</div>
+          <div class="flowstep" data-i18n="mr-fl6">Generate the overall opinion</div>
+          <div class="flowstep" data-i18n="mr-fl7">Print the result notice</div>
+        </div>
+        <p class="mt-6 pt-5 border-t border-line text-[13px] text-slate2 leading-relaxed" data-i18n="mr-multi"><b class="text-navy">Multi-tenant.</b> Each hospital runs on its own accounts and data — a hospital identifier is carried in the sign-in token, and every request is isolated to that hospital.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- VALUE + PRICING -->
+<!-- SCREENS -->
+<section class="bg-paper">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4" data-i18n="mr-screensk">Screens</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="mr-screensh2">From sign-in to result notice.</h2>
+    <p class="mt-4 text-[13px] text-slate2" data-i18n="mr-demodata">Screens shown with demo data.</p>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-login.webp" alt="Sign-in screen with hospital code, ID and password" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c1">Sign-in, scoped to the hospital</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-patients.webp" alt="List of patients screened on a given date" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c2">Patients by screening date</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-progress.webp" alt="AI analysis progress across test groups" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c3">Analysis running, group by group</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-groups.webp" alt="Results listed by test group" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c4">Results by test group</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-group-detail.webp" alt="Detailed AI analysis for one test group" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c5">Group detail — risk, summary, recommendation</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-table.webp" alt="Test result table with values, units, reference ranges and judgement" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c6">Result table with reference ranges</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-compare.webp" alt="Year-on-year comparison detail" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c7">Year-on-year change</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1200/991]"><img src="../images/medireport-result.webp" alt="Full analysis result view" width="1200" height="991" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c8">The full analysis view</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[1588/2640]"><img src="../images/medireport-report.webp" alt="Health screening result notice, official version" width="1588" height="2640" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="mr-c9">Result notice — print-ready, official or casual wording</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE AI WORKS -->
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4" data-i18n="mr-aik">Under the hood</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="mr-aih2">How the analysis is kept in bounds.</h2>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="rounded-2xl border border-line p-6"><div class="mono-label text-teal mb-2">01</div><div class="font-display font-bold text-navy mb-2" data-i18n="mr-a1t">Input, de-identified</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="mr-a1d">Group results, category-level clinical hints and patient attributes (sex, age) are composed into the prompt. Direct identifiers — name, patient number, date of birth — are stripped before anything is sent to the AI.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="mono-label text-teal mb-2">02</div><div class="font-display font-bold text-navy mb-2" data-i18n="mr-a2t">Schema-constrained output</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="mr-a2d">The model is forced to answer only in a fixed JSON schema — category, summary, risk level, flags, recommendations, follow-ups — so nothing free-form reaches the report.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="mono-label text-teal mb-2">03</div><div class="font-display font-bold text-navy mb-2" data-i18n="mr-a3t">Risk-based review routing</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="mr-a3d">Anything coming back as High risk is marked for mandatory clinician review, and every result carries an AI-generated disclosure.</p></div>
+      <div class="rounded-2xl border border-line p-6"><div class="mono-label text-teal mb-2">04</div><div class="font-display font-bold text-navy mb-2" data-i18n="mr-a4t">Overall opinion</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="mr-a4d">Group results are gathered a second time to produce the overall opinion, ordered so the most urgent item is read first.</p></div>
+    </div>
+    <div class="mt-8 rounded-2xl bg-paper border border-line p-6">
+      <div class="mono-label text-slate2 mb-2" data-i18n="mr-modelk">Model deployment</div>
+      <p class="text-slate2 text-[14.5px] leading-relaxed" data-i18n="mr-modeld">The default is a hosted OpenAI GPT API. For hospitals that require analysis to stay on the internal network, it switches to an on-premise model such as MedGemma on KT GPU infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM + PRICING -->
 <section class="bg-paper">
   <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12">
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">Why centers adopt it</h2>
-      <div class="rounded-2xl border border-line bg-white p-6 space-y-3 text-[15px]">
-        <div class="flex gap-3"><span class="text-teal">✓</span> Cuts report-writing time for clinicians</div>
-        <div class="flex gap-3"><span class="text-teal">✓</span> Plain language raises patient comprehension &amp; follow-up</div>
-        <div class="flex gap-3"><span class="text-teal">✓</span> Consent-based, pseudonymized data handling</div>
-        <div class="flex gap-3"><span class="text-teal">✓</span> Plugs into existing screening workflow</div>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="mr-sysk">System</h2>
+      <div class="rounded-2xl border border-line bg-white overflow-hidden">
+        <table class="w-full text-[14px]">
+          <tbody class="divide-y divide-line">
+            <tr><td class="p-4 font-semibold text-navy align-top">demo</td><td class="p-4 text-slate2"><span data-i18n="mr-sys1">Result lookup, AI analysis and reports — the screening-centre workstation</span><br><span class="text-[12.5px] text-slate2/75">React 19 · TypeScript · Vite · Tailwind</span></td></tr>
+            <tr><td class="p-4 font-semibold text-navy align-top">admin</td><td class="p-4 text-slate2"><span data-i18n="mr-sys2">Test groups, clinical hints and prompt management</span><br><span class="text-[12.5px] text-slate2/75">React 19 · TypeScript · Zustand · React Query</span></td></tr>
+            <tr><td class="p-4 font-semibold text-navy align-top">backend</td><td class="p-4 text-slate2"><span data-i18n="mr-sys3">Authentication, analysis orchestration, AI integration, API</span><br><span class="text-[12.5px] text-slate2/75">Spring Boot 3.2 · JPA · JWT · PostgreSQL</span></td></tr>
+            <tr><td class="p-4 font-semibold text-navy align-top">data</td><td class="p-4 text-slate2"><span data-i18n="mr-sys4">Screening data and analysis results, read-only link to the hospital EMR</span><br><span class="text-[12.5px] text-slate2/75">PostgreSQL 15</span></td></tr>
+          </tbody>
+        </table>
       </div>
+      <p class="mt-4 text-[13px] text-slate2 leading-relaxed" data-i18n="mr-emr">Test results are read from the hospital EMR read-only and used as analysis input; nothing is written back.</p>
     </div>
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">Pricing</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="mr-pricek">Pricing</h2>
       <div class="rounded-2xl border border-line bg-white p-6">
-        <div class="font-semibold text-navy text-lg">Metered · per report</div>
-        <p class="text-slate2 text-[14px] mt-1">Pay only for reports generated, settled in $SL credit.</p>
+        <div class="font-semibold text-navy text-lg" data-i18n="mr-price1">Metered · per report</div>
+        <p class="text-slate2 text-[14px] mt-1" data-i18n="mr-price2">Pay only for reports generated, settled in $SL credit.</p>
         <div class="mt-4 rounded-xl bg-paper p-4">
-          <div class="font-display font-bold text-navy">Enterprise Credit Pack</div>
-          <p class="text-slate2 text-[14px] mt-1">Institutions pre-purchase credit in bulk (fiat), converted to $SL on the backend — the familiar AI-API model. No crypto handling required.</p>
+          <div class="font-display font-bold text-navy" data-i18n="mr-price3">Enterprise Credit Pack</div>
+          <p class="text-slate2 text-[14px] mt-1" data-i18n="mr-price4">Institutions pre-purchase credit in bulk (fiat), converted to $SL on the backend — the familiar AI-API model. No crypto handling required.</p>
         </div>
-        <a href="../index.html#partner" class="mt-6 inline-flex rounded-xl bg-navy text-white font-semibold px-6 py-3 hover:bg-ink transition">Talk to us</a>
+        <a href="../index.html#partner" class="mt-6 inline-flex rounded-xl bg-navy text-white font-semibold px-6 py-3 hover:bg-ink transition" data-i18n="mr-price5">Talk to us</a>
+      </div>
+      <div class="mt-6 rounded-2xl border border-line bg-white p-6">
+        <div class="mono-label text-slate2 mb-2" data-i18n="mr-whyk">Why centres adopt it</div>
+        <div class="space-y-2.5 text-[14.5px]">
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="mr-why1">Cuts report-writing time for clinicians</span></div>
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="mr-why2">Plain language raises comprehension and follow-up</span></div>
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="mr-why3">Consent-based, pseudonymised data handling</span></div>
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="mr-why4">Plugs into the existing screening workflow</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -109,10 +206,11 @@ tailwind.config={theme:{extend:{
 <footer class="bg-ink text-white/55 border-t border-white/10">
   <div class="max-w-content mx-auto px-6 py-10 text-[13px] flex flex-col sm:flex-row justify-between gap-4">
     <div>© 2026 SL Labs · $SL on opBNB (BNB Chain L2)</div>
-    <div class="flex gap-6"><a href="../index.html" class="hover:text-white">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white">Whitepaper</a></div>
+    <div class="flex gap-6"><a href="../index.html" class="hover:text-white" data-i18n="p-home">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white" data-i18n="p-wp">Whitepaper</a></div>
   </div>
-  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35">Not investment advice. A documentation-support tool; it does not replace a clinician's interpretation.</div>
+  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35" data-i18n="mr-legal">Not investment advice. A documentation-support tool; AI-generated results are for reference and the final judgement rests with a clinician.</div>
 </footer>
+<script src="products-i18n.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

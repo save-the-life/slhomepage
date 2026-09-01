@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="vetdental-ai">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>VetDental AI — AI dental reads for 5,000 clinics | SL Labs</title>
-<meta name="description" content="VetDental AI: AI dental X-ray screening for veterinary clinics, $0.1 per read, on DIGIRAY equipment." />
+<title>Pet Tooth AI — Dental X-ray reads in 12 seconds | SL Labs</title>
+<meta name="description" content="Pet Tooth AI reads veterinary dental X-rays in about 12 seconds — findings, lesion locations marked on the image, a treatment plan and an A4 report, all as a draft for veterinary review." />
 <link rel="canonical" href="https://www.savethelife.io/products/vetdental-ai" />
 <meta property="og:site_name" content="SL Labs" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="VetDental AI — AI dental reads for 5,000 clinics | SL Labs" />
-<meta property="og:description" content="AI dental X-ray screening for veterinary clinics, $0.1 per read, on DIGIRAY equipment." />
+<meta property="og:title" content="Pet Tooth AI — Dental X-ray reads in 12 seconds | SL Labs" />
+<meta property="og:description" content="AI dental X-ray screening for veterinary clinics — evidence marked on every finding, reviewed and approved by a veterinarian." />
 <meta property="og:image" content="https://www.savethelife.io/img/og-image.png" />
 <meta property="og:url" content="https://www.savethelife.io/products/vetdental-ai" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="en" href="https://www.savethelife.io/products/vetdental-ai" />
+<link rel="alternate" hreflang="ko" href="https://www.savethelife.io/products/vetdental-ai?lang=ko" />
+<link rel="alternate" hreflang="zh-CN" href="https://www.savethelife.io/products/vetdental-ai?lang=zh" />
+<link rel="alternate" hreflang="ja" href="https://www.savethelife.io/products/vetdental-ai?lang=ja" />
+<link rel="alternate" hreflang="es" href="https://www.savethelife.io/products/vetdental-ai?lang=es" />
+<link rel="alternate" hreflang="ru" href="https://www.savethelife.io/products/vetdental-ai?lang=ru" />
+<link rel="alternate" hreflang="vi" href="https://www.savethelife.io/products/vetdental-ai?lang=vi" />
+<link rel="alternate" hreflang="x-default" href="https://www.savethelife.io/products/vetdental-ai" />
 <link rel="icon" type="image/png" href="../img/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,81 +35,203 @@ tailwind.config={theme:{extend:{
   html{scroll-behavior:smooth} html,body{overflow-x:hidden;max-width:100%} img{max-width:100%}
   body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  :lang(ko) body, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3{word-break:keep-all}
   .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:12px}
-  .imgslot{position:relative;overflow:hidden;min-width:0;background:radial-gradient(120% 100% at 0% 0%,rgba(34,211,238,.16),transparent 55%),linear-gradient(135deg,#0B1F3A,#0E2C46 60%,#12384f)}
-  .imgslot>img{width:100%;height:100%;object-fit:cover;display:block}
+  .mono-label{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .shot{position:relative;overflow:hidden;border-radius:16px;background:#0B1220;border:1px solid #E5EBF0}
+  .shot>img{width:100%;height:100%;object-fit:contain;display:block}
   .glow{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.5;pointer-events:none}
+  .chipstack{display:flex;flex-wrap:wrap;gap:.5rem}
+  .chip{border:1px solid #E5EBF0;border-radius:9999px;padding:.4rem .85rem;font-size:13px;font-weight:600;color:#5B6B7F;background:#fff}
+  .lang-sel{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235B6B7F' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .6rem center;padding-right:1.6rem}
+  :where(a,button):focus-visible{outline:2px solid #22D3EE;outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body class="bg-white text-navy">
 
-<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4">Veterinary screening-support tool. Final interpretation is made by a licensed veterinarian.</div>
+<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4" data-i18n="pt-disc">Veterinary screening-support tool. Final interpretation is made by a licensed veterinarian.</div>
 
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
-  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between">
-    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
+  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy shrink-0"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
     <div class="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate2">
       <a href="sl-watch.html" class="hover:text-navy transition">SL Watch</a>
-      <a href="vetdental-ai.html" class="text-navy">VetDental AI</a>
+      <a href="vetdental-ai.html" class="text-navy">Pet Tooth AI</a>
       <a href="medireport.html" class="hover:text-navy transition">MediReport</a>
       <a href="../index.html#token" class="hover:text-navy transition">$SL</a>
     </div>
-    <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition">← Home</a>
+    <div class="flex items-center gap-3 shrink-0">
+      <select class="lang-sel rounded-lg border border-line bg-white text-[12px] font-semibold text-navy pl-2.5 py-1.5 cursor-pointer" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="zh">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="es">Español</option>
+        <option value="ru">Русский</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+      <a href="../index.html" class="text-[13px] font-semibold text-slate2 hover:text-navy transition" data-i18n="p-home2">← Home</a>
+    </div>
   </nav>
 </header>
 
 <!-- HERO -->
 <section class="relative overflow-hidden bg-paper">
   <div class="glow bg-teal/25 w-[480px] h-[480px] -top-32 -right-24"></div>
-  <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-14 items-center">
-    <div class="min-w-0">
-      <div class="eyebrow text-teal mb-4">Proof Network #1 · VetDental AI</div>
-      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy">AI dental reads,<br>$0.1 per read.</h1>
-      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg">Pets can't tell you where it hurts. VetDental AI screens dental X-rays for periodontitis, root-apex abscess, tooth fracture and bone loss — on the <b class="text-navy">DIGIRAY</b> equipment already in <b class="text-navy">5,000 clinics</b>.</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="../index.html#partner" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft">For clinics — get started →</a>
-        <a href="../whitepaper.pdf" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition">Read the Whitepaper</a>
+  <div class="relative max-w-content mx-auto px-6 py-20">
+    <div class="grid lg:grid-cols-[1fr_1.15fr] gap-14 items-center">
+      <div class="min-w-0">
+        <div class="eyebrow text-teal mb-4" data-i18n="pt-eyebrow">Proof Network #1 · VetDental AI → Pet Tooth AI</div>
+        <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy" data-i18n="pt-h1">AI reads pet dental X-rays<br>in <span class="text-teal">12 seconds</span>.</h1>
+        <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg" data-i18n="pt-lede">Upload a radiograph and get <b class="text-navy">findings, lesion locations, a treatment plan and an A4 report</b> in one pass. Every result marks its evidence on the image and ships as a draft for veterinary review.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="https://pettooth.savethelife.io/demo" target="_blank" rel="noopener" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="pt-cta1">Start the 30-second demo ↗</a>
+          <a href="https://pettooth.savethelife.io" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="pt-cta2">Veterinarian sign-in ↗</a>
+        </div>
+        <div class="mt-9 grid grid-cols-3 gap-4 max-w-lg">
+          <div><div class="text-[28px] font-display font-extrabold text-navy">90+</div><div class="mono-label text-slate2 mt-1" data-i18n="pt-s1">Real cases read</div></div>
+          <div><div class="text-[28px] font-display font-extrabold text-navy">12s</div><div class="mono-label text-slate2 mt-1" data-i18n="pt-s2">Avg, measured</div></div>
+          <div><div class="text-[28px] font-display font-extrabold text-navy">5,000</div><div class="mono-label text-slate2 mt-1" data-i18n="pt-s3">DIGIRAY clinics</div></div>
+        </div>
       </div>
+      <div class="shot aspect-[1600/1000] shadow-2xl shadow-navy/25 min-w-0"><img src="../images/pettooth-hero.webp" alt="Pet Tooth AI live reading console showing a dental X-ray with a lesion marked by a bounding box" width="1600" height="1000"></div>
     </div>
-    <div class="imgslot rounded-[26px] aspect-[4/3] shadow-2xl shadow-navy/25 min-w-0"><img src="../img/net-vetdental.webp" alt="VetDental AI"></div>
+    <p class="mt-8 text-[13px] text-slate2">Operated by DIGIRAY Corp. · <span data-i18n="pt-free">Free across all features during the beta</span></p>
   </div>
 </section>
 
-<!-- WHY -->
+<!-- BEFORE / AFTER -->
 <section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20">
-    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight">The fastest-proving network — because it needs no new hardware.</h2>
-    <div class="mt-10 grid sm:grid-cols-3 gap-5">
-      <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-teal mb-2">Zero CAC</div><p class="text-slate2 text-[14px]">The distribution is already built: 5,000 DIGIRAY-equipped clinics. AI plugs into the existing workflow.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-teal mb-2">No regulatory friction</div><p class="text-slate2 text-[14px]">Veterinary imaging sits outside human-medical law, so credit consumption starts immediately.</p></div>
-      <div class="rounded-2xl border border-line p-6"><div class="font-display font-bold text-teal mb-2">First on-chain proof</div><p class="text-slate2 text-[14px]">Every read is $0.1 in $SL credit — the first real "daily reads = daily demand" data.</p></div>
+    <p class="eyebrow text-teal mb-4" data-i18n="pt-whyk">Why it matters</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight" data-i18n="pt-whyh2">Pets cannot point at the pain. The radiograph has to.</h2>
+    <p class="mt-5 text-slate2 text-[16px] leading-relaxed max-w-2xl" data-i18n="pt-whylede">Dental disease in companion animals rarely shows on the outside, so radiographic reading is essential — but reading each image carefully and then writing up something an owner can understand takes real time in a working clinic.</p>
+    <div class="mt-10 overflow-x-auto">
+      <table class="w-full text-[15px] min-w-[560px] rounded-2xl border border-line overflow-hidden">
+        <thead><tr class="bg-paper">
+          <th class="text-left p-4 font-semibold text-slate2 w-1/2" data-i18n="pt-tbefore">Before</th>
+          <th class="text-left p-4 font-semibold text-navy w-1/2">Pet Tooth AI</th>
+        </tr></thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 text-slate2" data-i18n="pt-tr1a">Veterinarian reads the image by eye after imaging</td><td class="p-4 text-navy font-medium" data-i18n="pt-tr1b">AI drafts the read on upload — 12 seconds on average, measured</td></tr>
+          <tr><td class="p-4 text-slate2" data-i18n="pt-tr2a">Findings noted verbally or by hand</td><td class="p-4 text-navy font-medium" data-i18n="pt-tr2b">Structured findings on a standard vocabulary, with lesion locations marked</td></tr>
+          <tr><td class="p-4 text-slate2" data-i18n="pt-tr3a">Owner consultation material written separately</td><td class="p-4 text-navy font-medium" data-i18n="pt-tr3b">A4 report and PDF generated in the clinic's own format (KO / EN)</td></tr>
+          <tr><td class="p-4 text-slate2">—</td><td class="p-4 text-navy font-medium" data-i18n="pt-tr4b">Veterinarian reviews, edits and approves the draft → final report</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-8 rounded-2xl bg-paper border border-teal/30 p-6">
+      <div class="mono-label text-teal mb-2" data-i18n="pt-princk">Core principle</div>
+      <p class="text-navy text-[16px] font-semibold" data-i18n="pt-princ">A person makes the final call.</p>
+      <p class="mt-2 text-slate2 text-[14px] leading-relaxed" data-i18n="pt-princd">AI output is an evidence-marked draft, designed to pass through review and approval by a licensed veterinarian. Reports carry a DRAFT watermark until they are reviewed. This system is not a medical device.</p>
     </div>
   </div>
 </section>
 
-<!-- WHAT IT DETECTS + PRICING -->
+<!-- THREE STEPS -->
 <section class="bg-paper">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4" data-i18n="pt-flowk">How it works</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="pt-flowh2">Three steps, one pass.</h2>
+    <div class="mt-10 space-y-8">
+      <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-8 items-center">
+        <div>
+          <div class="mono-label text-teal mb-2">01</div>
+          <h3 class="text-[22px] font-display font-bold text-navy mb-3" data-i18n="pt-st1t">Send the image</h3>
+          <p class="text-slate2 text-[15px] leading-relaxed" data-i18n="pt-st1d">Push automatically from the imaging software in the exam room via the integration API, or upload the X-ray on the web. Patient details — species, age, sex, region imaged — feed into the read.</p>
+        </div>
+        <div class="shot aspect-[1600/1000] shadow-soft"><img src="../images/pettooth-upload.webp" alt="New case registration with patient details and drag-and-drop X-ray upload" width="1600" height="1000" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-8 items-center">
+        <div>
+          <div class="mono-label text-teal mb-2">02</div>
+          <h3 class="text-[22px] font-display font-bold text-navy mb-3" data-i18n="pt-st2t">AI reads it</h3>
+          <p class="text-slate2 text-[15px] leading-relaxed" data-i18n="pt-st2d">The image runs a five-stage pipeline: preprocessing → automatic masking of patient identifiers by OCR → vision-AI reading on an eight-step clinical prompt → schema validation and confidence gating → A4 PDF typesetting. Progress shows in real time.</p>
+        </div>
+        <div class="shot aspect-[1600/1000] shadow-soft"><img src="../images/pettooth-reading.webp" alt="AI reading progress screen showing each pipeline stage in real time" width="1600" height="1000" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-8 items-center">
+        <div>
+          <div class="mono-label text-teal mb-2">03</div>
+          <h3 class="text-[22px] font-display font-bold text-navy mb-3" data-i18n="pt-st3t">Veterinarian reviews and approves</h3>
+          <p class="text-slate2 text-[15px] leading-relaxed" data-i18n="pt-st3d">The veterinarian reviews the finished draft on screen, edits what needs changing and approves it into a final report. Every edit is retained for audit.</p>
+        </div>
+        <div class="shot aspect-[1600/1000] shadow-soft"><img src="../images/pettooth-cases.webp" alt="Case list managing the clinic's full reading history by status" width="1600" height="1000" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT -->
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4" data-i18n="pt-repk">The output</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="pt-reph2">A four-page A4 report, in the clinic's own format.</h2>
+    <p class="mt-5 text-slate2 text-[16px] leading-relaxed max-w-2xl" data-i18n="pt-replede">Each page carries the clinic header and a page number, and downloads as a PDF in one click. Below is a real AI-read case — severe, flagged urgent.</p>
+    <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-5">
+      <figure class="min-w-0"><div class="shot aspect-[818/1147]"><img src="../images/pettooth-report-1.webp" alt="Report page 1: patient details, urgent-care banner, X-ray with lesion regions marked" width="818" height="1147" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="pt-rep1">1p · Patient details, urgent banner, lesion locations on the X-ray</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[818/1147]"><img src="../images/pettooth-report-2.webp" alt="Report page 2: findings table by severity and disease progression chart" width="818" height="1147" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="pt-rep2">2p · Findings by severity, plus progression across five key diseases</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[818/1147]"><img src="../images/pettooth-report-3.webp" alt="Report page 3: systemic disease risk assessment" width="818" height="1147" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="pt-rep3">3p · Systemic risk — how oral disease bears on heart, kidney and more</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[818/1147]"><img src="../images/pettooth-report-4.webp" alt="Report page 4: prioritised treatment plan, prognosis and veterinarian signature block" width="818" height="1147" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[13px] text-slate2" data-i18n="pt-rep4">4p · Prioritised treatment plan, prognosis, follow-up and signature block</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="bg-paper">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4" data-i18n="pt-featk">Capabilities</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="pt-feath2">Eight things it does well.</h2>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f1t">Evidence marked on the image</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f1d">Every finding points to a region on the X-ray. The location is stated as an AI estimate, by design, so a veterinarian can verify it.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f2t">Fast reads</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f2d">Upload to finished draft in about 12 seconds, measured — fast enough not to break the flow of an appointment.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f3t">Double read, cross-checked</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f3d">The same study is read twice independently and the server compares. Only findings that agree are marked verified; anything appearing on one side alone is down-weighted, holding back over-reporting.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f4t">Identifiers masked automatically</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f4d">Chart numbers and dates burned into the image are found by OCR and covered before analysis, so identifiers never reach the analysis server.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f5t">A4 report and PDF</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f5d">Single-sheet typesetting in the clinic's format, per-page headers, one-click PDF — for owner consultations and the chart.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f6t">Korean and English on the spot</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f6d">The same case in either language — usable as-is for owners who do not read Korean, and for showing the work abroad.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f7t">Imaging-software integration</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f7d">A push integration (API-key authenticated) sends the image the moment imaging finishes, sitting on top of the existing workflow. Originals received this way are deleted right after analysis.</p></div>
+      <div class="rounded-2xl border border-line bg-white p-6"><div class="font-display font-bold text-navy mb-2" data-i18n="pt-f8t">Urgent-case alerting</div><p class="text-slate2 text-[14px] leading-relaxed" data-i18n="pt-f8d">When a high-confidence severe finding is detected, an urgent-care banner is placed at the top of the report.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="bg-ink text-white">
+  <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-[1fr_1.15fr] gap-12 items-center">
+    <div>
+      <p class="eyebrow text-teal mb-4" data-i18n="pt-demok">Live demo</p>
+      <h2 class="text-[28px] sm:text-[36px] font-extrabold leading-tight" data-i18n="pt-demoh2">Try it yourself. No install, no sign-up.</h2>
+      <p class="mt-5 text-white/65 text-[16px] leading-relaxed" data-i18n="pt-demod">Replay real AI-read cases straight in the browser, from mild to urgent. Click a case that has not been analysed yet and a real analysis runs right then.</p>
+      <a href="https://pettooth.savethelife.io/demo" target="_blank" rel="noopener" class="mt-8 inline-flex rounded-xl bg-teal text-navy font-bold px-6 py-3.5 hover:bg-teal/90 transition" data-i18n="pt-democta">Open the demo ↗</a>
+    </div>
+    <div class="shot aspect-[1600/1000] shadow-2xl shadow-black/40"><img src="../images/pettooth-demo.webp" alt="Demo hub gallery of completed real analyses" width="1600" height="1000" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+
+<!-- TRUST + ECONOMICS -->
+<section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12">
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">What it screens for</h2>
-      <div class="rounded-2xl border border-line bg-white p-6 space-y-3 text-[15px]">
-        <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-teal"></span> Periodontitis</div>
-        <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-teal"></span> Root-apex abscess</div>
-        <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-teal"></span> Tooth fracture</div>
-        <div class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-teal"></span> Bone loss</div>
-        <p class="text-[12.5px] text-slate2/80 pt-2">Screening support for the attending veterinarian — not an autonomous diagnosis.</p>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="pt-trustk">Trust and responsibility</h2>
+      <div class="rounded-2xl border border-line bg-white p-6 space-y-4 text-[14px] text-slate2 leading-relaxed">
+        <p data-i18n="pt-t1"><b class="text-navy">The veterinarian decides.</b> AI output is a draft for review; the DRAFT watermark stays until it is edited and approved. Final diagnosis and treatment rest with a licensed veterinarian.</p>
+        <p data-i18n="pt-t2"><b class="text-navy">Privacy.</b> Patient identifiers in the image are masked automatically before analysis, and only clinical variables — species, age, sex, region — are passed to the AI. Originals received through the integration are deleted as soon as analysis completes.</p>
+        <p data-i18n="pt-t3"><b class="text-navy">Not a medical device.</b> This is a software tool that produces reference material to support a diagnosis.</p>
       </div>
     </div>
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">Pricing</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="pt-econk">Getting started &amp; economics</h2>
       <div class="rounded-2xl border border-line bg-white p-6">
-        <div class="flex items-baseline gap-2"><span class="text-4xl font-display font-extrabold text-navy">$0.1</span><span class="text-slate2">/ read (in $SL credit)</span></div>
-        <ul class="mt-5 space-y-2 text-slate2 text-[15px]">
-          <li class="flex gap-2"><span class="text-teal">✓</span> First month free — 3 reads / day</li>
-          <li class="flex gap-2"><span class="text-teal">✓</span> Runs on existing DIGIRAY equipment</li>
-          <li class="flex gap-2"><span class="text-teal">✓</span> Fiat billing available — no crypto handling required</li>
-        </ul>
-        <a href="../index.html#partner" class="mt-6 inline-flex rounded-xl bg-navy text-white font-semibold px-6 py-3 hover:bg-ink transition">Request access</a>
+        <div class="space-y-3 text-[14px]">
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="pt-e1"><b class="text-navy">Web</b> — sign up free during the beta, register a case, read immediately</span></div>
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="pt-e2"><b class="text-navy">Demo</b> — 30 seconds, no account</span></div>
+          <div class="flex gap-3"><span class="text-teal shrink-0">✓</span><span data-i18n="pt-e3"><b class="text-navy">Imaging integration</b> — push API for clinics on DIGIRAY equipment</span></div>
+        </div>
+        <div class="mt-5 rounded-xl bg-paper p-4">
+          <div class="font-display font-bold text-navy" data-i18n="pt-e4t">After the beta: $0.1 per read</div>
+          <p class="text-slate2 text-[14px] mt-1" data-i18n="pt-e4d">Each read settles as $0.1 of $SL credit — the first real "daily reads = daily demand" signal for the protocol. Fiat billing is available, so no crypto handling is required.</p>
+        </div>
+        <a href="../index.html#partner" class="mt-6 inline-flex rounded-xl bg-navy text-white font-semibold px-6 py-3 hover:bg-ink transition" data-i18n="pt-e5">For clinics — get started →</a>
       </div>
     </div>
   </div>
@@ -110,10 +240,11 @@ tailwind.config={theme:{extend:{
 <footer class="bg-ink text-white/55 border-t border-white/10">
   <div class="max-w-content mx-auto px-6 py-10 text-[13px] flex flex-col sm:flex-row justify-between gap-4">
     <div>© 2026 SL Labs · $SL on opBNB (BNB Chain L2)</div>
-    <div class="flex gap-6"><a href="../index.html" class="hover:text-white">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white">Whitepaper</a></div>
+    <div class="flex gap-6"><a href="../index.html" class="hover:text-white" data-i18n="p-home">Home</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white" data-i18n="p-wp">Whitepaper</a></div>
   </div>
-  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35">Not investment advice. Veterinary screening-support tool; final interpretation by a licensed veterinarian.</div>
+  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35" data-i18n="pt-legal">Not investment advice. Veterinary screening-support tool; final interpretation by a licensed veterinarian. Not a medical device.</div>
 </footer>
+<script src="products-i18n.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
