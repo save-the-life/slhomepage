@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Health Hero — First aid, learned as a quiz | SL Labs</title>
+<meta name="description" content="Health Hero is a quiz game for first aid and everyday health knowledge, playable inside the Toss app. Every answer — right or wrong — comes with an explanation." />
+<link rel="canonical" href="https://www.savethelife.io/apps/health-hero" />
+<meta property="og:site_name" content="SL Labs" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Health Hero — First aid, learned as a quiz | SL Labs" />
+<meta property="og:description" content="A first-aid and health quiz game inside Toss, where every answer comes with an explanation." />
+<meta property="og:image" content="https://www.savethelife.io/img/og-image.png" />
+<meta property="og:url" content="https://www.savethelife.io/apps/health-hero" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="../img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{
+  colors:{navy:'#0B1F3A',ink:'#070C15',teal:'#12B5A5',cyan:'#22D3EE',coral:'#FF6B6B',paper:'#F5F8FA',slate2:'#5B6B7F',line:'#E5EBF0'},
+  fontFamily:{sans:['Inter','system-ui','sans-serif'],display:['Sora','system-ui','sans-serif']},
+  maxWidth:{content:'1160px'}, boxShadow:{soft:'0 1px 3px rgba(11,31,58,.06),0 12px 32px -12px rgba(11,31,58,.14)'}
+}}}
+</script>
+<style>
+  html{scroll-behavior:smooth} html,body{overflow-x:hidden;max-width:100%} img{max-width:100%}
+  body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:12px}
+  .mono-label{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .shot{position:relative;overflow:hidden;border-radius:20px;background:#0B1220;border:1px solid #E5EBF0}
+  .shot>img{width:100%;height:100%;object-fit:contain;display:block}
+  .glow{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.5;pointer-events:none}
+  .chipstack{display:flex;flex-wrap:wrap;gap:.5rem}
+  .chip{border:1px solid #E5EBF0;border-radius:9999px;padding:.4rem .85rem;font-size:13px;font-weight:600;color:#5B6B7F;background:#fff}
+</style>
+</head>
+<body class="bg-white text-navy">
+
+<div class="bg-navy text-white/70 text-[12.5px] text-center py-2 px-4">Health Hero is an educational game. Its content is for learning and reference and does not replace professional medical care.</div>
+
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
+  <nav class="max-w-content mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+    <a href="../index.html" class="flex items-center gap-2.5 font-display font-extrabold text-navy shrink-0"><img src="../img/logo-symbol.png" alt="" class="w-9 h-9" width="36" height="36"><span class="text-[17px]">SL&nbsp;Labs</span></a>
+    <div class="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate2">
+      <a href="healthfi.html" class="hover:text-navy transition">HealthFi</a>
+      <a href="thor.html" class="hover:text-navy transition">Thor</a>
+      <a href="luckydice.html" class="hover:text-navy transition">Lucky Dice</a>
+      <a href="health-hero.html" class="text-navy">Health Hero</a>
+    </div>
+    <a href="../index.html#apps" class="text-[13px] font-semibold text-slate2 hover:text-navy transition shrink-0">← All apps</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-paper">
+  <div class="glow bg-cyan/25 w-[480px] h-[480px] -top-32 -right-24"></div>
+  <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-[1.05fr_.95fr] gap-14 items-center">
+    <div class="min-w-0">
+      <div class="eyebrow text-teal mb-4">Live App · Toss Mini App</div>
+      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy">First aid,<br>learned as a quiz.</h1>
+      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg">Health Hero teaches first aid and everyday health knowledge through a stage-based quiz game. It runs <b class="text-navy">inside the Toss app</b>, and every answer — right or wrong — comes with an explanation.</p>
+      <div class="mt-7 flex items-center gap-2 text-[14px] font-semibold text-teal">
+        <span class="w-2 h-2 rounded-full bg-teal"></span> Live in Apps in Toss
+      </div>
+      <div class="mt-6 rounded-2xl border border-line bg-white p-5 max-w-md">
+        <div class="mono-label text-slate2 mb-2">How to play</div>
+        <p class="text-[15px] text-navy font-semibold">Open the Toss app and search for <span class="text-teal">헬스히어로</span>.</p>
+        <p class="mt-1.5 text-[13px] text-slate2">No install, no separate account — it runs inside Toss.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 min-w-0">
+      <div class="shot aspect-[397/860] shadow-2xl shadow-navy/20"><img src="../images/sllabs-16.webp" alt="Health Hero main map with unlockable stages" width="397" height="860"></div>
+      <div class="shot aspect-[397/860] shadow-2xl shadow-navy/20 mt-8"><img src="../images/sllabs-18.webp" alt="Health Hero multiple-choice quiz screen" width="397" height="860"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4">What it does</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight">One question, one piece of knowledge that stays.</h2>
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
+        <div class="mono-label text-teal mb-2">Progression</div>
+        <div class="font-display font-bold text-navy mb-2">Stage map</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">Unlock stages along a map and collect EXP and stars for every clear.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
+        <div class="mono-label text-teal mb-2">Content</div>
+        <div class="font-display font-bold text-navy mb-2">Real-situation questions</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">Multiple-choice questions on mental health and stress, wounds, bleeding, fractures and other real situations.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
+        <div class="mono-label text-teal mb-2">Learning</div>
+        <div class="font-display font-bold text-navy mb-2">Explanation on every answer</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">Right or wrong, the explanation appears immediately — so every question leaves something behind.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
+        <div class="mono-label text-teal mb-2">Pacing</div>
+        <div class="font-display font-bold text-navy mb-2">Lives &amp; items</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">Hearts are spent as you play and recharge over time. Use 50/50, hint, double-reward and reveal-answer items.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
+        <div class="mono-label text-teal mb-2">Growth</div>
+        <div class="font-display font-bold text-navy mb-2">Levels &amp; stars</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">Collect EXP to level up and build a star-point balance as you go.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6 bg-paper border-teal/30">
+        <div class="mono-label text-teal mb-2">Why it exists</div>
+        <div class="font-display font-bold text-navy mb-2">Four minutes</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">In a cardiac arrest, brain damage begins in about four minutes. The person nearby is the one who decides how those minutes go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section class="bg-paper">
+  <div class="max-w-content mx-auto px-6 py-20">
+    <p class="eyebrow text-teal mb-4">Screens</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight">Inside the game.</h2>
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5">
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-15.webp" alt="Health Hero intro screen" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Intro</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-16.webp" alt="Health Hero main map" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Main map</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-17.webp" alt="Health Hero stage selection" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Stage select</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-18.webp" alt="Health Hero quiz question" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Quiz</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-19.webp" alt="Health Hero explanation after a correct answer" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Correct · explained</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-20.webp" alt="Health Hero explanation after a wrong answer" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Wrong · explained</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[397/860]"><img src="../images/sllabs-21.webp" alt="Health Hero stage clear reward" width="397" height="860" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Clear reward</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="bg-white">
+  <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12">
+    <div>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5">At a glance</h2>
+      <dl class="rounded-2xl border border-line divide-y divide-line overflow-hidden">
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Product</dt><dd class="font-semibold text-[15px] text-right">Health Hero (헬스히어로)</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Category</dt><dd class="font-semibold text-[15px] text-right">First-aid learning game</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Platform</dt><dd class="font-semibold text-[15px] text-right">Apps in Toss</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">How to open</dt><dd class="font-semibold text-[15px] text-right">Search 헬스히어로 in Toss</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Status</dt><dd class="font-semibold text-[15px] text-right text-teal">Live</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5">Built with</h2>
+      <div class="chipstack">
+        <span class="chip">Phaser 3</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">Apps in Toss</span>
+      </div>
+      <div class="mt-8 rounded-2xl bg-paper border border-line p-6">
+        <div class="mono-label text-slate2 mb-2">Where it fits</div>
+        <p class="text-slate2 text-[14px] leading-relaxed">SL Labs builds the network that catches an emergency. Health Hero trains the person standing next to it. <a href="../index.html#networks" class="text-teal font-semibold hover:underline">See the protocol →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-ink text-white/55 border-t border-white/10">
+  <div class="max-w-content mx-auto px-6 py-10 text-[13px] flex flex-col sm:flex-row justify-between gap-4">
+    <div>© 2026 SL Labs · $SL on opBNB (BNB Chain L2)</div>
+    <div class="flex gap-6"><a href="../index.html" class="hover:text-white">Home</a><a href="../index.html#apps" class="hover:text-white">Live Apps</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white">Whitepaper</a></div>
+  </div>
+  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35">Not investment advice. Health Hero content is for learning and reference and does not replace professional medical care.</div>
+</footer>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
