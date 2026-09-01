@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page="luckydice">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +13,14 @@
 <meta property="og:image" content="https://www.savethelife.io/img/og-image.png" />
 <meta property="og:url" content="https://www.savethelife.io/apps/luckydice" />
 <meta name="twitter:card" content="summary_large_image" />
+<link rel="alternate" hreflang="en" href="https://www.savethelife.io/apps/luckydice" />
+<link rel="alternate" hreflang="ko" href="https://www.savethelife.io/apps/luckydice?lang=ko" />
+<link rel="alternate" hreflang="zh-CN" href="https://www.savethelife.io/apps/luckydice?lang=zh" />
+<link rel="alternate" hreflang="ja" href="https://www.savethelife.io/apps/luckydice?lang=ja" />
+<link rel="alternate" hreflang="es" href="https://www.savethelife.io/apps/luckydice?lang=es" />
+<link rel="alternate" hreflang="ru" href="https://www.savethelife.io/apps/luckydice?lang=ru" />
+<link rel="alternate" hreflang="vi" href="https://www.savethelife.io/apps/luckydice?lang=vi" />
+<link rel="alternate" hreflang="x-default" href="https://www.savethelife.io/apps/luckydice" />
 <link rel="icon" type="image/png" href="../img/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,6 +35,7 @@ tailwind.config={theme:{extend:{
   html{scroll-behavior:smooth} html,body{overflow-x:hidden;max-width:100%} img{max-width:100%}
   body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  :lang(ko) body, :lang(ko) h1, :lang(ko) h2, :lang(ko) h3{word-break:keep-all}
   .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:12px}
   .mono-label{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
   .shot{position:relative;overflow:hidden;border-radius:20px;background:#0B1220;border:1px solid #E5EBF0}
@@ -34,6 +43,8 @@ tailwind.config={theme:{extend:{
   .glow{position:absolute;border-radius:9999px;filter:blur(90px);opacity:.5;pointer-events:none}
   .chipstack{display:flex;flex-wrap:wrap;gap:.5rem}
   .chip{border:1px solid #E5EBF0;border-radius:9999px;padding:.4rem .85rem;font-size:13px;font-weight:600;color:#5B6B7F;background:#fff}
+  .lang-sel{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235B6B7F' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .6rem center;padding-right:1.6rem}
+  :where(a,button):focus-visible{outline:2px solid #22D3EE;outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body class="bg-white text-navy">
@@ -47,7 +58,18 @@ tailwind.config={theme:{extend:{
       <a href="luckydice.html" class="text-navy">Lucky Dice</a>
       <a href="health-hero.html" class="hover:text-navy transition">Health Hero</a>
     </div>
-    <a href="../index.html#apps" class="text-[13px] font-semibold text-slate2 hover:text-navy transition shrink-0">← All apps</a>
+    <div class="flex items-center gap-3 shrink-0">
+      <select class="lang-sel rounded-lg border border-line bg-white text-[12px] font-semibold text-navy pl-2.5 py-1.5 cursor-pointer" aria-label="Language">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="zh">简体中文</option>
+        <option value="ja">日本語</option>
+        <option value="es">Español</option>
+        <option value="ru">Русский</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
+      <a href="../index.html#apps" class="text-[13px] font-semibold text-slate2 hover:text-navy transition" data-i18n="c-allapps">← All apps</a>
+    </div>
   </nav>
 </header>
 
@@ -56,17 +78,17 @@ tailwind.config={theme:{extend:{
   <div class="glow bg-cyan/25 w-[480px] h-[480px] -top-32 -right-24"></div>
   <div class="relative max-w-content mx-auto px-6 py-20 grid lg:grid-cols-[1.05fr_.95fr] gap-14 items-center">
     <div class="min-w-0">
-      <div class="eyebrow text-teal mb-4">Live App · LINE Mini Dapp</div>
-      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy">Roll the dice.<br>Stack the rewards.</h1>
-      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg">A casual Web3 board game where you roll dice around a board and stack rewards through check-ins, missions and season rankings — running <b class="text-navy">inside LINE with nothing to install</b>.</p>
+      <div class="eyebrow text-teal mb-4" data-i18n="ld-eyebrow">Live App · LINE Mini Dapp</div>
+      <h1 class="text-[40px] sm:text-[52px] leading-[1.05] font-extrabold text-navy" data-i18n="ld-h1">Roll the dice.<br>Stack the rewards.</h1>
+      <p class="mt-6 text-[17px] text-slate2 leading-relaxed max-w-lg" data-i18n="ld-lede">A casual Web3 board game where you roll dice around a board and stack rewards through check-ins, missions and season rankings — running <b class="text-navy">inside LINE with nothing to install</b>.</p>
       <div class="mt-7 flex items-center gap-2 text-[14px] font-semibold text-teal">
-        <span class="w-2 h-2 rounded-full bg-teal"></span> Live now
+        <span class="w-2 h-2 rounded-full bg-teal shrink-0"></span> <span data-i18n="c-livenow">Live now</span>
       </div>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="https://luckydice.savethelife.io" target="_blank" rel="noopener" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft">Play on LINE ↗</a>
-        <a href="https://www.unifi.me/apps/dapps/N67a9b40713babb50ba197dc2" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition">Open on Unifi ↗</a>
+        <a href="https://luckydice.savethelife.io" target="_blank" rel="noopener" class="rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="ld-playline">Play on LINE ↗</a>
+        <a href="https://www.unifi.me/apps/dapps/N67a9b40713babb50ba197dc2" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="ld-openunifi">Open on Unifi ↗</a>
       </div>
-      <p class="mt-6 text-[13px] text-slate2">Built and operated by SL Labs · Settles in $SL on opBNB</p>
+      <p class="mt-6 text-[13px] text-slate2" data-i18n="ld-pub">Built and operated by SL Labs · Settles in $SL on opBNB</p>
     </div>
     <div class="grid grid-cols-2 gap-4 min-w-0">
       <div class="shot aspect-[324/710] shadow-2xl shadow-navy/20"><img src="../images/sllabs-01.webp" alt="Lucky Dice game board with dice roll and reward tiles" width="324" height="708"></div>
@@ -78,38 +100,38 @@ tailwind.config={theme:{extend:{
 <!-- FEATURES -->
 <section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20">
-    <p class="eyebrow text-teal mb-4">What it does</p>
-    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight">Six loops that keep players coming back.</h2>
+    <p class="eyebrow text-teal mb-4" data-i18n="c-whatitdoes">What it does</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy max-w-2xl leading-tight" data-i18n="ld-fh2">Six loops that keep players coming back.</h2>
     <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Core loop</div>
-        <div class="font-display font-bold text-navy mb-2">Dice board</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Move around a board where every tile holds points, an item or a mini-game. Auto-play is supported.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f1k">Core loop</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f1t">Dice board</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f1d">Move around a board where every tile holds points, an item or a mini-game. Auto-play is supported.</p>
       </div>
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Mini-games</div>
-        <div class="font-display font-bold text-navy mb-2">Roulette &amp; Star Jackpot</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">A roulette event and a Star Jackpot slot. After a win, choose between doubling down or taking the payout.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f2k">Mini-games</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f2t">Roulette &amp; Star Jackpot</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f2d">A roulette event and a Star Jackpot slot. After a win, choose between doubling down or taking the payout.</p>
       </div>
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Retention</div>
-        <div class="font-display font-bold text-navy mb-2">Check-ins &amp; missions</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Weekly check-ins with a day-7 jackpot, one-off social missions on X, Telegram and Medium, plus USDT missions.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f3k">Retention</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f3t">Check-ins &amp; missions</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f3d">Weekly check-ins with a day-7 jackpot, one-off social missions on X, Telegram and Medium, plus USDT missions.</p>
       </div>
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Competition</div>
-        <div class="font-display font-bold text-navy mb-2">Season rankings</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Players are ranked by star points each season, and the top of the table receives $SL tokens and tier passes.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f4k">Competition</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f4t">Season rankings</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f4d">Players are ranked by star points each season, and the top of the table receives $SL tokens and tier passes.</p>
       </div>
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Collection</div>
-        <div class="font-display font-bold text-navy mb-2">Items &amp; NFTs</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Buy and hold ranking-booster items and NFT collections from the in-game shop.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f5k">Collection</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f5t">Items &amp; NFTs</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f5d">Buy and hold ranking-booster items and NFT collections from the in-game shop.</p>
       </div>
       <div class="rounded-2xl border border-line p-6 hover:shadow-soft hover:border-teal/40 transition">
-        <div class="mono-label text-teal mb-2">Payout</div>
-        <div class="font-display font-bold text-navy mb-2">Wallet &amp; claim</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Check $SL and USDT balances, claim rewards, and keep a full record of everything earned.</p>
+        <div class="mono-label text-teal mb-2" data-i18n="ld-f6k">Payout</div>
+        <div class="font-display font-bold text-navy mb-2" data-i18n="ld-f6t">Wallet &amp; claim</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-f6d">Check $SL and USDT balances, claim rewards, and keep a full record of everything earned.</p>
       </div>
     </div>
   </div>
@@ -118,17 +140,17 @@ tailwind.config={theme:{extend:{
 <!-- SCREENS -->
 <section class="bg-paper">
   <div class="max-w-content mx-auto px-6 py-20">
-    <p class="eyebrow text-teal mb-4">Screens</p>
-    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight">Inside the game.</h2>
+    <p class="eyebrow text-teal mb-4" data-i18n="c-screens">Screens</p>
+    <h2 class="text-[28px] sm:text-[36px] font-extrabold text-navy leading-tight" data-i18n="c-insidegame">Inside the game.</h2>
     <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-5">
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-01.webp" alt="Lucky Dice game board" width="324" height="708" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Game board</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-02.webp" alt="Lucky Dice missions and daily check-in" width="325" height="714" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Missions &amp; check-in</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-03.webp" alt="Lucky Dice season ranking rewards" width="323" height="713" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Season ranking rewards</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-04.webp" alt="Lucky Dice roulette event" width="323" height="707" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Roulette event</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-01.webp" alt="Lucky Dice game board" width="324" height="708" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap1">Game board</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-02.webp" alt="Lucky Dice missions and daily check-in" width="325" height="714" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap2">Missions &amp; check-in</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-03.webp" alt="Lucky Dice season ranking rewards" width="323" height="713" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap3">Season ranking rewards</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-04.webp" alt="Lucky Dice roulette event" width="323" height="707" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap4">Roulette event</figcaption></figure>
       <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-05.webp" alt="Lucky Dice Star Jackpot slot" width="323" height="710" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Star Jackpot</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-06.webp" alt="Lucky Dice win screen with a double-or-nothing option" width="319" height="706" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Win · double down</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-07.webp" alt="Lucky Dice items and NFT collection" width="325" height="711" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Items &amp; NFTs</figcaption></figure>
-      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-08.webp" alt="Lucky Dice assets and reward claim screen" width="326" height="709" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center">Assets &amp; claim</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-06.webp" alt="Lucky Dice win screen with a double-or-nothing option" width="319" height="706" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap6">Win · double down</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-07.webp" alt="Lucky Dice items and NFT collection" width="325" height="711" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap7">Items &amp; NFTs</figcaption></figure>
+      <figure class="min-w-0"><div class="shot aspect-[324/710]"><img src="../images/sllabs-08.webp" alt="Lucky Dice assets and reward claim screen" width="326" height="709" loading="lazy" decoding="async"></div><figcaption class="mt-3 text-[12.5px] text-slate2 text-center" data-i18n="ld-cap8">Assets &amp; claim</figcaption></figure>
     </div>
   </div>
 </section>
@@ -137,21 +159,21 @@ tailwind.config={theme:{extend:{
 <section class="bg-white">
   <div class="max-w-content mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12">
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">At a glance</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="c-glance">At a glance</h2>
       <dl class="rounded-2xl border border-line divide-y divide-line overflow-hidden">
-        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Product</dt><dd class="font-semibold text-[15px] text-right">Lucky Dice</dd></div>
-        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Category</dt><dd class="font-semibold text-[15px] text-right">Casual Web3 board game</dd></div>
-        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Platforms</dt><dd class="font-semibold text-[15px] text-right">LINE Mini Dapp · Unifi</dd></div>
-        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Chain</dt><dd class="font-semibold text-[15px] text-right">opBNB</dd></div>
-        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]">Status</dt><dd class="font-semibold text-[15px] text-right text-teal">Live</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]" data-i18n="c-product">Product</dt><dd class="font-semibold text-[15px] text-right">Lucky Dice</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]" data-i18n="c-category">Category</dt><dd class="font-semibold text-[15px] text-right" data-i18n="ld-vcat">Casual Web3 board game</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]" data-i18n="c-platforms">Platforms</dt><dd class="font-semibold text-[15px] text-right" data-i18n="ld-vplat">LINE Mini Dapp · Unifi</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]" data-i18n="c-chain">Chain</dt><dd class="font-semibold text-[15px] text-right">opBNB</dd></div>
+        <div class="flex justify-between gap-6 px-6 py-4"><dt class="text-slate2 text-[14px]" data-i18n="c-status">Status</dt><dd class="font-semibold text-[15px] text-right text-teal" data-i18n="c-vlive">Live</dd></div>
       </dl>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="https://luckydice.savethelife.io" target="_blank" rel="noopener" class="rounded-xl bg-navy text-white font-semibold px-5 py-3 text-[14px] hover:bg-ink transition">Play on LINE ↗</a>
+        <a href="https://luckydice.savethelife.io" target="_blank" rel="noopener" class="rounded-xl bg-navy text-white font-semibold px-5 py-3 text-[14px] hover:bg-ink transition" data-i18n="ld-playline">Play on LINE ↗</a>
         <a href="https://www.unifi.me/apps/dapps/N67a9b40713babb50ba197dc2" target="_blank" rel="noopener" class="rounded-xl bg-white border border-line text-navy font-semibold px-5 py-3 text-[14px] hover:border-navy transition">Unifi ↗</a>
       </div>
     </div>
     <div>
-      <h2 class="text-[26px] font-extrabold text-navy mb-5">Built with</h2>
+      <h2 class="text-[26px] font-extrabold text-navy mb-5" data-i18n="c-builtwith">Built with</h2>
       <div class="chipstack">
         <span class="chip">React</span>
         <span class="chip">TypeScript</span>
@@ -160,8 +182,8 @@ tailwind.config={theme:{extend:{
         <span class="chip">Dapp Portal SDK</span>
       </div>
       <div class="mt-8 rounded-2xl bg-paper border border-line p-6">
-        <div class="mono-label text-slate2 mb-2">Where it fits</div>
-        <p class="text-slate2 text-[14px] leading-relaxed">Lucky Dice is the widest top of the funnel for $SL — it puts the token in front of LINE and Unifi users who never had to open a wallet first. <a href="../index.html#token" class="text-teal font-semibold hover:underline">About $SL →</a></p>
+        <div class="mono-label text-slate2 mb-2" data-i18n="c-fits">Where it fits</div>
+        <p class="text-slate2 text-[14px] leading-relaxed" data-i18n="ld-fits">Lucky Dice is the widest top of the funnel for $SL — it puts the token in front of LINE and Unifi users who never had to open a wallet first. <a href="../index.html#token" class="text-teal font-semibold hover:underline">About $SL →</a></p>
       </div>
     </div>
   </div>
@@ -170,10 +192,11 @@ tailwind.config={theme:{extend:{
 <footer class="bg-ink text-white/55 border-t border-white/10">
   <div class="max-w-content mx-auto px-6 py-10 text-[13px] flex flex-col sm:flex-row justify-between gap-4">
     <div>© 2026 SL Labs · $SL on opBNB (BNB Chain L2)</div>
-    <div class="flex gap-6"><a href="../index.html" class="hover:text-white">Home</a><a href="../index.html#apps" class="hover:text-white">Live Apps</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white">Whitepaper</a></div>
+    <div class="flex gap-6"><a href="../index.html" class="hover:text-white" data-i18n="c-home">Home</a><a href="../index.html#apps" class="hover:text-white" data-i18n="c-liveapps">Live Apps</a><a href="../whitepaper.pdf" target="_blank" rel="noopener" class="hover:text-white" data-i18n="c-wp">Whitepaper</a></div>
   </div>
-  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35">Not investment advice. In-game rewards are subject to change and are not a promise of future value.</div>
+  <div class="max-w-content mx-auto px-6 pb-8 text-[11px] text-white/35" data-i18n="ld-legal">Not investment advice. In-game rewards are subject to change and are not a promise of future value.</div>
 </footer>
+<script src="apps-i18n.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
