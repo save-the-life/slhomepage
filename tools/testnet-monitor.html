@@ -95,7 +95,7 @@
     <div class="sub">BSC 테스트넷 PancakeSwap v2 풀과 opBNB 테스트넷 베스팅·타임락을 브라우저에서 직접 체인 조회 · 30초마다 갱신 · 서버 없음</div>
   </div>
   <div class="ctl">
-    <span class="stat" id="stat"><span class="dot" id="dot"></span>연결 중…</span>
+    <span class="stat" id="stat"><span class="dot" id="dot"></span><span id="statTxt">연결 중…</span></span>
     <button type="button" id="refreshBtn">새로고침</button>
     <button type="button" id="themeBtn">다크 모드</button>
   </div>
@@ -172,13 +172,20 @@
   function outGivenIn(a,rIn,rOut,fee){ var f=a*BigInt(10000-fee); return (f*rOut)/(rIn*10000n+f); }
   function depthFor(rIn,rOut,fee,ratio){ var lo=0n,hi=rIn,p0=Number(rIn)/Number(rOut); for(var i=0;i<80;i++){ var mid=(lo+hi)/2n; var out=outGivenIn(mid,rIn,rOut,fee); var p1=Number(rIn+mid)/Number(rOut-out); if(p1/p0<ratio) lo=mid; else hi=mid; } return hi; }
 
-  async function getLogsChunked(provider,filter,from,to,onChunk){
-    var size=8000, f=from;
-    while(f<=to){
-      var t=Math.min(to,f+size-1);
-      try{ var logs=await provider.getLogs(Object.assign({},filter,{fromBlock:f,toBlock:t})); onChunk(logs); f=t+1; }
-      catch(e){ if(size>500){ size=Math.floor(size/2); continue; } throw e; }
+  // 최신 블록에서 과거로 거슬러 조회. 공개 RPC 가 오래된 블록을 잘라내면(pruned) 거기서 멈추고 실제 조회된 범위를 돌려준다.
+  async function getLogsBackward(provider,filter,from,to,onChunk){
+    var size=2000, t=to, covered=to;
+    while(t>=from){
+      var f=Math.max(from,t-size+1);
+      try{ var logs=await provider.getLogs(Object.assign({},filter,{fromBlock:f,toBlock:t})); onChunk(logs); covered=f; t=f-1; }
+      catch(e){
+        var msg=(e.shortMessage||e.message||'')+'';
+        if(/prun|history|not available|too old/i.test(msg)) break;
+        if(size>250){ size=Math.floor(size/2); continue; }
+        break;
+      }
     }
+    return covered;
   }
 
   async function loadBsc(){
@@ -206,18 +213,21 @@
       $('chartInfo').textContent='이벤트 조회 중… (블록 '+from+' → '+latest.number+', 약 '+blockTime.toFixed(2)+'s/블록)';
       var syncs=[], swaps=[], xfers=[];
       var ifc=pair.interface, tifc=token.interface;
-      await getLogsChunked(bsc,{address:CFG.bsc.pair,topics:[[ifc.getEvent('Sync').topicHash,ifc.getEvent('Swap').topicHash]]},from,latest.number,function(logs){
+      var cov1=await getLogsBackward(bsc,{address:CFG.bsc.pair,topics:[[ifc.getEvent('Sync').topicHash,ifc.getEvent('Swap').topicHash]]},from,latest.number,function(logs){
         logs.forEach(function(l){ var p=ifc.parseLog(l); if(!p) return; if(p.name==='Sync') syncs.push({b:l.blockNumber,r0:p.args[0],r1:p.args[1]}); else swaps.push({b:l.blockNumber,tx:l.transactionHash,a:p.args}); });
       });
-      await getLogsChunked(bsc,{address:CFG.bsc.token,topics:[tifc.getEvent('Transfer').topicHash]},from,latest.number,function(logs){
+      var cov2=await getLogsBackward(bsc,{address:CFG.bsc.token,topics:[tifc.getEvent('Transfer').topicHash]},from,latest.number,function(logs){
         logs.forEach(function(l){ var p=tifc.parseLog(l); if(!p) return; if(fu(p.args.value)>=CFG.bigXfer) xfers.push({b:l.blockNumber,tx:l.transactionHash,from:p.args.from,to:p.args.to,v:p.args.value}); });
       });
       // 블록 → 시각 근사 (최신 블록 기준 역산)
       var t0=latest.timestamp, n0=latest.number; var tsOf=function(b){ return t0-(n0-b)*blockTime; };
+      syncs.sort(function(a,b){return a.b-b.b;});
       priceSeries=syncs.map(function(s){ var rs=isSL0?s.r0:s.r1, ru=isSL0?s.r1:s.r0; return {t:tsOf(s.b),p:fu(ru)/fu(rs)}; });
       priceSeries.push({t:latest.timestamp,p:price});
       drawChart(priceSeries);
-      $('chartInfo').textContent=syncs.length+'개 Sync · '+swaps.length+'개 Swap · 최근 '+CFG.hours+'h';
+      var covFrom=Math.max(cov1,cov2); var covH=((latest.number-covFrom)*blockTime/3600);
+      $('chartInfo').textContent=syncs.length+'개 Sync · '+swaps.length+'개 Swap · 실제 조회 범위 최근 '+covH.toFixed(1)+'h'+(covFrom>from?' (공개 RPC 가 그 이전 블록 로그를 보관하지 않음)':'');
+      $('chartSub').textContent='최근 '+covH.toFixed(1)+'시간 · 풀 Sync 이벤트 기준';
       // 표
       var xb=$('xfers'); xb.innerHTML='';
       xfers.sort(function(a,b){return b.b-a.b;}).slice(0,40).forEach(function(x){
@@ -276,9 +286,11 @@
 
   var busy=false;
   async function refresh(){
-    if(busy) return; busy=true; var dot=$('dot'), st=$('stat');
-    try{ await loadBsc(); await loadOp(); dot.className='dot live'; st.className='stat'; st.innerHTML='<span class="dot live"></span>갱신 '+new Date().toLocaleTimeString('ko-KR'); }
-    catch(e){ dot.className='dot err'; st.className='stat err'; st.innerHTML='<span class="dot err"></span>오류: '+(e.shortMessage||e.message||e).toString().slice(0,90); console.error(e); }
+    if(busy) return; busy=true; var dot=$('dot'), st=$('stat'), tx=$('statTxt');
+    var results=await Promise.allSettled([loadBsc(), loadOp()]);
+    var errs=results.filter(function(r){return r.status==='rejected';}).map(function(r){ console.error(r.reason); return (r.reason&&(r.reason.shortMessage||r.reason.message)||r.reason+'').toString().slice(0,80); });
+    if(errs.length){ dot.className='dot err'; st.className='stat err'; tx.textContent='일부 오류: '+errs.join(' | '); }
+    else { dot.className='dot live'; st.className='stat'; tx.textContent='갱신 '+new Date().toLocaleTimeString('ko-KR'); }
     busy=false;
   }
   $('refreshBtn').addEventListener('click',function(){ lastLogBlock=null; refresh(); });
