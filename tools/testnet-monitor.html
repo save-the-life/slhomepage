@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>$SL 테스트넷 모니터</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    color-scheme:light;
+    --paper:#F2F5F7; --surface:#FFFFFF; --surface-2:#F6F9FB; --line:#D8E0E7; --line-2:#E9EFF3;
+    --ink:#14202B; --ink-2:#3D4D5D; --muted:#73828F; --heading:#0B1F3A;
+    --teal:#0E8F82; --teal-ink:#0B6F65; --teal-wash:rgba(14,143,130,.11);
+    --good:#1D8A4E; --good-wash:rgba(29,138,78,.12);
+    --warn:#A8780A; --warn-wash:rgba(184,134,11,.13);
+    --crit:#C43C3C; --crit-wash:rgba(196,60,60,.10);
+    --info:#3B6FB6; --info-wash:rgba(59,111,182,.11);
+    --shadow:0 1px 2px rgba(11,31,58,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --paper:#0E151D; --surface:#151F2A; --surface-2:#1A2531; --line:#2A3849; --line-2:#222F3D;
+      --ink:#E5ECF2; --ink-2:#B9C5D1; --muted:#8797A7; --heading:#E3ECF6;
+      --teal:#26998C; --teal-ink:#63C7BA; --teal-wash:rgba(38,153,140,.18);
+      --good:#3FB56F; --good-wash:rgba(63,181,111,.16);
+      --warn:#D9A43B; --warn-wash:rgba(217,164,59,.16);
+      --crit:#E06060; --crit-wash:rgba(224,96,96,.16);
+      --info:#6E9BD8; --info-wash:rgba(110,155,216,.16);
+      --shadow:0 1px 2px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#0E151D; --surface:#151F2A; --surface-2:#1A2531; --line:#2A3849; --line-2:#222F3D;
+    --ink:#E5ECF2; --ink-2:#B9C5D1; --muted:#8797A7; --heading:#E3ECF6;
+    --teal:#26998C; --teal-ink:#63C7BA; --teal-wash:rgba(38,153,140,.18);
+    --good:#3FB56F; --good-wash:rgba(63,181,111,.16);
+    --warn:#D9A43B; --warn-wash:rgba(217,164,59,.16);
+    --crit:#E06060; --crit-wash:rgba(224,96,96,.16);
+    --info:#6E9BD8; --info-wash:rgba(110,155,216,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:14px;line-height:1.55;word-break:keep-all}
+  .mono{font-family:"IBM Plex Mono","Consolas",monospace;font-variant-numeric:tabular-nums}
+  a{color:var(--teal-ink)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 60px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 0 14px;border-bottom:1px solid var(--line)}
+  h1{font-family:"Gothic A1","IBM Plex Sans KR",sans-serif;font-weight:800;font-size:24px;margin:0;color:var(--heading)}
+  h1 .sl{color:var(--teal)}
+  .sub{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:3px 9px;background:var(--warn-wash);color:var(--warn);vertical-align:middle;margin-left:8px}
+  .ctl{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2)}
+  .ctl button{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 12px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .ctl button:hover{color:var(--teal-ink);border-color:var(--teal)}
+  .stat{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+  .stat.err{color:var(--crit)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--muted);margin-right:6px;vertical-align:middle}
+  .dot.live{background:var(--good);box-shadow:0 0 0 3px var(--good-wash)}
+  .dot.err{background:var(--crit)}
+  h2{font-family:"Gothic A1","IBM Plex Sans KR",sans-serif;font-weight:800;font-size:16px;color:var(--heading);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+  h2 .ch{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;background:var(--heading);color:var(--paper);border-radius:5px;padding:2px 7px;letter-spacing:.06em}
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow)}
+  .tile .k{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+  .tile .v{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;color:var(--heading);font-variant-numeric:tabular-nums;margin-top:3px;line-height:1.15}
+  .tile .v small{font-size:12px;color:var(--ink-2);font-family:"IBM Plex Sans KR",sans-serif;font-weight:500;margin-left:4px}
+  .tile .s{font-size:12px;color:var(--ink-2);margin-top:4px}
+  .tile.ok{border-color:var(--good)} .tile.bad{border-color:var(--crit);background:var(--crit-wash)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
+  canvas{width:100%;height:240px;display:block}
+  .legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:14px;height:3px;background:var(--teal);vertical-align:middle;margin-right:5px;border-radius:2px}
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line-2);vertical-align:top}
+  th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line);white-space:nowrap}
+  td.mono{font-size:12px;white-space:nowrap}
+  td.num{font-family:"IBM Plex Mono",monospace;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tbl{overflow-x:auto}
+  .pill{display:inline-block;font-size:11px;font-weight:600;border-radius:999px;padding:1px 8px}
+  .pill.good{background:var(--good-wash);color:var(--good)} .pill.warn{background:var(--warn-wash);color:var(--warn)} .pill.crit{background:var(--crit-wash);color:var(--crit)} .pill.info{background:var(--info-wash);color:var(--info)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .empty{color:var(--muted);font-size:12.5px;padding:8px 0}
+  .foot{margin-top:28px;font-size:11.5px;color:var(--muted);line-height:1.7}
+  @media (max-width:860px){ .tiles{grid-template-columns:repeat(2,1fr)} .grid2{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1><span class="sl">$SL</span> 테스트넷 모니터 <span class="badge">testnet · 실제 자산 아님</span></h1>
+    <div class="sub">BSC 테스트넷 PancakeSwap v2 풀과 opBNB 테스트넷 베스팅·타임락을 브라우저에서 직접 체인 조회 · 30초마다 갱신 · 서버 없음</div>
+  </div>
+  <div class="ctl">
+    <span class="stat" id="stat"><span class="dot" id="dot"></span>연결 중…</span>
+    <button type="button" id="refreshBtn">새로고침</button>
+    <button type="button" id="themeBtn">다크 모드</button>
+  </div>
+</header>
+
+<h2><span class="ch">BSC 97</span> PancakeSwap v2 · SL / mUSDT</h2>
+<div class="tiles">
+  <div class="tile"><div class="k">가격</div><div class="v" id="price">—<small>USDT/SL</small></div><div class="s" id="priceSub">목표 0.01</div></div>
+  <div class="tile"><div class="k">리저브</div><div class="v" id="rSL">—<small>SL</small></div><div class="s" id="rU">— mUSDT</div></div>
+  <div class="tile"><div class="k">±2% 심도</div><div class="v" id="depthUp">—<small>USDT 매수</small></div><div class="s" id="depthDown">— SL 매도</div></div>
+  <div class="tile" id="lpTile"><div class="k">LP 락</div><div class="v" id="lpPct">—<small>% 타임락 보관</small></div><div class="s" id="lpSub">—</div></div>
+</div>
+
+<h2>가격 추이 <span style="font-weight:500;font-size:12px;color:var(--muted)" id="chartSub">최근 72시간 · 풀 Sync 이벤트 기준</span></h2>
+<div class="card">
+  <canvas id="chart" width="1080" height="240"></canvas>
+  <div class="legend"><span><i></i>USDT/SL</span><span id="chartInfo">로딩 중…</span></div>
+</div>
+
+<div class="grid2" style="margin-top:12px">
+  <div>
+    <h2 style="margin-top:14px">대량 이동 · 최근 72시간 <span style="font-weight:500;font-size:12px;color:var(--muted)">SL 전송 ≥ 100,000 (경보 기준 9,500,000 = 공급 0.5%)</span></h2>
+    <div class="card tbl"><table><thead><tr><th>시각</th><th class="num">수량 SL</th><th>from → to</th><th>tx</th></tr></thead><tbody id="xfers"><tr><td colspan="4" class="empty">로딩 중…</td></tr></tbody></table></div>
+  </div>
+  <div>
+    <h2 style="margin-top:14px">풀 거래 · 최근 72시간 <span style="font-weight:500;font-size:12px;color:var(--muted)">Swap 이벤트</span></h2>
+    <div class="card tbl"><table><thead><tr><th>시각</th><th>방향</th><th class="num">USDT</th><th class="num">SL</th><th>tx</th></tr></thead><tbody id="swaps"><tr><td colspan="5" class="empty">로딩 중…</td></tr></tbody></table></div>
+  </div>
+</div>
+
+<h2><span class="ch">opBNB 5611</span> 베스팅 · 타임락</h2>
+<div class="tiles">
+  <div class="tile" id="supplyTile"><div class="k">총공급</div><div class="v" id="opSupply">—<small>SL</small></div><div class="s">기대 1,900,000,000 (1억 소각 후)</div></div>
+  <div class="tile" id="ownerTile"><div class="k">베스팅 owner</div><div class="v" id="opOwner" style="font-size:14px">—</div><div class="s" id="opOwnerSub">타임락이어야 함</div></div>
+  <div class="tile"><div class="k">약정 잔량 / 누적 청구</div><div class="v" id="opCommitted" style="font-size:16px">—</div><div class="s" id="opReleased">—</div></div>
+  <div class="tile" id="opTile"><div class="k">타임락 예약 작업</div><div class="v" id="opStatus" style="font-size:16px">—</div><div class="s" id="opReady">—</div></div>
+</div>
+<div class="card tbl" style="margin-top:12px"><table><thead><tr><th>버킷</th><th class="num">총량</th><th class="num">지금 청구 가능</th><th class="num">누적 청구</th><th>수혜자</th></tr></thead><tbody id="buckets"><tr><td colspan="5" class="empty">로딩 중…</td></tr></tbody></table></div>
+
+<p class="foot" id="foot">주소: BSC 테스트넷 SLToken 0x15B2739C02F606C8680a771117aA300B7c70Cea1 · pair 0xb8E93D129C3C65AC93B17128eD5EB5405f4422EF · timelock 0xE55fdBDFC6d0c7864e76eaB458DA6106832eA105 — opBNB 테스트넷 SLToken 0xE55fdBDFC6d0c7864e76eaB458DA6106832eA105 · SLVesting 0x15B2739C02F606C8680a771117aA300B7c70Cea1 · timelock 0xAb8b27cDE531cc396c8BE012FAABB083f202d206. 전부 테스트넷이며 $SL 메인넷 토큰이 아니다. RPC: BSC 테스트넷 publicnode, opBNB 테스트넷 공식 RPC (키 없음). 다른 RPC 를 쓰려면 URL 에 <span class="mono">?bsc=https://…&amp;op=https://…</span>.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  var CFG={
+    bsc:{ rpc:q.get('bsc')||'https://bsc-testnet-rpc.publicnode.com', chainId:97, explorer:'https://testnet.bscscan.com',
+          token:'0x15B2739C02F606C8680a771117aA300B7c70Cea1', usdt:'0x06355dA0Ace573AB56eFb918526eefdAb462F213',
+          pair:'0xb8E93D129C3C65AC93B17128eD5EB5405f4422EF', timelock:'0xE55fdBDFC6d0c7864e76eaB458DA6106832eA105',
+          lockOp:'0x9a56f850ad74f7e906449980707a77b223fd4a73e3ed81ee6f71405b6453db92', feeBps:25 },
+    op:{ rpc:q.get('op')||'https://opbnb-testnet-rpc.bnbchain.org', chainId:5611, explorer:'https://opbnb-testnet.bscscan.com',
+         token:'0xE55fdBDFC6d0c7864e76eaB458DA6106832eA105', vesting:'0x15B2739C02F606C8680a771117aA300B7c70Cea1',
+         timelock:'0xAb8b27cDE531cc396c8BE012FAABB083f202d206', op:'0xadd28c16a5c48f01832978c46d7e052aa08cea7ea4b2de5d26d217fd3984a077',
+         buckets:['PARTICIPANT','VC','TEAM','TREASURY','MARKETING','ADVISORS','ECOSYSTEM'] },
+    hours:72, bigXfer:100000, alertXfer:9500000, targetPrice:0.01, refreshMs:30000
+  };
+  var E=ethers;
+  var ERC20=['function totalSupply() view returns (uint256)','function balanceOf(address) view returns (uint256)','event Transfer(address indexed from,address indexed to,uint256 value)'];
+  var PAIR=['function getReserves() view returns (uint112,uint112,uint32)','function token0() view returns (address)','function totalSupply() view returns (uint256)','function balanceOf(address) view returns (uint256)',
+            'event Sync(uint112 reserve0,uint112 reserve1)','event Swap(address indexed sender,uint256 amount0In,uint256 amount1In,uint256 amount0Out,uint256 amount1Out,address indexed to)'];
+  var TL=['function getTimestamp(bytes32) view returns (uint256)','function isOperationPending(bytes32) view returns (bool)','function isOperationReady(bytes32) view returns (bool)','function isOperationDone(bytes32) view returns (bool)'];
+  var VEST=['function owner() view returns (address)','function totalCommitted() view returns (uint256)','function releasable(bytes32) view returns (uint256)',
+            'function schedules(bytes32) view returns (address beneficiary,uint256 total,uint256 released,uint64 start,uint64 cliff,uint64 duration,uint16 tgeBps,bool exists)'];
+  var $=function(id){return document.getElementById(id);};
+  var fmt=function(x,d){ return Number(x).toLocaleString('en-US',{maximumFractionDigits:d==null?2:d}); };
+  var fu=function(w){ return Number(E.formatUnits(w,18)); };
+  var short=function(a){ return a.slice(0,6)+'…'+a.slice(-4); };
+  var tsFmt=function(s){ var d=new Date(s*1000); return d.toISOString().slice(5,16).replace('T',' ')+'Z'; };
+  var bsc=new E.JsonRpcProvider(CFG.bsc.rpc,CFG.bsc.chainId,{staticNetwork:true});
+  var op=new E.JsonRpcProvider(CFG.op.rpc,CFG.op.chainId,{staticNetwork:true});
+  var isSL0=null, priceSeries=[], lastLogBlock=null, blockTime=null;
+
+  function outGivenIn(a,rIn,rOut,fee){ var f=a*BigInt(10000-fee); return (f*rOut)/(rIn*10000n+f); }
+  function depthFor(rIn,rOut,fee,ratio){ var lo=0n,hi=rIn,p0=Number(rIn)/Number(rOut); for(var i=0;i<80;i++){ var mid=(lo+hi)/2n; var out=outGivenIn(mid,rIn,rOut,fee); var p1=Number(rIn+mid)/Number(rOut-out); if(p1/p0<ratio) lo=mid; else hi=mid; } return hi; }
+
+  async function getLogsChunked(provider,filter,from,to,onChunk){
+    var size=8000, f=from;
+    while(f<=to){
+      var t=Math.min(to,f+size-1);
+      try{ var logs=await provider.getLogs(Object.assign({},filter,{fromBlock:f,toBlock:t})); onChunk(logs); f=t+1; }
+      catch(e){ if(size>500){ size=Math.floor(size/2); continue; } throw e; }
+    }
+  }
+
+  async function loadBsc(){
+    var token=new E.Contract(CFG.bsc.token,ERC20,bsc), pair=new E.Contract(CFG.bsc.pair,PAIR,bsc), tl=new E.Contract(CFG.bsc.timelock,TL,bsc);
+    var latest=await bsc.getBlock('latest');
+    if(isSL0===null){ isSL0=(await pair.token0()).toLowerCase()===CFG.bsc.token.toLowerCase(); }
+    var r=await pair.getReserves(); var rSL=isSL0?r[0]:r[1], rU=isSL0?r[1]:r[0];
+    var price=fu(rU)/fu(rSL);
+    $('price').innerHTML=price.toPrecision(6)+'<small>USDT/SL</small>';
+    $('priceSub').textContent='목표 0.01 대비 '+((price/CFG.targetPrice-1)*100).toFixed(2)+'% · block '+latest.number;
+    $('rSL').innerHTML=fmt(fu(rSL),0)+'<small>SL</small>'; $('rU').textContent=fmt(fu(rU),2)+' mUSDT';
+    var up=depthFor(rU,rSL,CFG.bsc.feeBps,1.02), down=depthFor(rSL,rU,CFG.bsc.feeBps,1.02);
+    $('depthUp').innerHTML=fmt(fu(up),2)+'<small>USDT 매수</small>'; $('depthDown').textContent=fmt(fu(down),0)+' SL 매도 (≈ '+fmt(fu(down)*price,2)+' USDT)';
+    var lpTotal=await pair.totalSupply(), lpHeld=await pair.balanceOf(CFG.bsc.timelock);
+    var pct=Number(lpHeld*10000n/lpTotal)/100;
+    var ready=await tl.getTimestamp(CFG.bsc.lockOp), pending=await tl.isOperationPending(CFG.bsc.lockOp);
+    $('lpPct').innerHTML=pct.toFixed(2)+'<small>% 타임락 보관</small>';
+    $('lpSub').textContent='해제 '+new Date(Number(ready)*1000).toISOString().slice(0,10)+' · '+(pending?'잠금 유지 중':'해제됨 또는 실행됨');
+    $('lpTile').className='tile '+(pct>=99.9&&pending?'ok':'bad');
+
+    // 72h 범위 계산
+    if(!blockTime){ var older=await bsc.getBlock(Math.max(1,latest.number-5000)); blockTime=(latest.timestamp-older.timestamp)/(latest.number-older.number)||3; }
+    var span=Math.ceil(CFG.hours*3600/blockTime); var from=Math.max(1,latest.number-span);
+    if(lastLogBlock===null){
+      $('chartInfo').textContent='이벤트 조회 중… (블록 '+from+' → '+latest.number+', 약 '+blockTime.toFixed(2)+'s/블록)';
+      var syncs=[], swaps=[], xfers=[];
+      var ifc=pair.interface, tifc=token.interface;
+      await getLogsChunked(bsc,{address:CFG.bsc.pair,topics:[[ifc.getEvent('Sync').topicHash,ifc.getEvent('Swap').topicHash]]},from,latest.number,function(logs){
+        logs.forEach(function(l){ var p=ifc.parseLog(l); if(!p) return; if(p.name==='Sync') syncs.push({b:l.blockNumber,r0:p.args[0],r1:p.args[1]}); else swaps.push({b:l.blockNumber,tx:l.transactionHash,a:p.args}); });
+      });
+      await getLogsChunked(bsc,{address:CFG.bsc.token,topics:[tifc.getEvent('Transfer').topicHash]},from,latest.number,function(logs){
+        logs.forEach(function(l){ var p=tifc.parseLog(l); if(!p) return; if(fu(p.args.value)>=CFG.bigXfer) xfers.push({b:l.blockNumber,tx:l.transactionHash,from:p.args.from,to:p.args.to,v:p.args.value}); });
+      });
+      // 블록 → 시각 근사 (최신 블록 기준 역산)
+      var t0=latest.timestamp, n0=latest.number; var tsOf=function(b){ return t0-(n0-b)*blockTime; };
+      priceSeries=syncs.map(function(s){ var rs=isSL0?s.r0:s.r1, ru=isSL0?s.r1:s.r0; return {t:tsOf(s.b),p:fu(ru)/fu(rs)}; });
+      priceSeries.push({t:latest.timestamp,p:price});
+      drawChart(priceSeries);
+      $('chartInfo').textContent=syncs.length+'개 Sync · '+swaps.length+'개 Swap · 최근 '+CFG.hours+'h';
+      // 표
+      var xb=$('xfers'); xb.innerHTML='';
+      xfers.sort(function(a,b){return b.b-a.b;}).slice(0,40).forEach(function(x){
+        var v=fu(x.v); var tr=document.createElement('tr');
+        tr.innerHTML='<td class="mono">'+tsFmt(tsOf(x.b))+'</td><td class="num">'+fmt(v,0)+(v>=CFG.alertXfer?' <span class="pill crit">경보</span>':'')+'</td><td class="mono">'+short(x.from)+' → '+short(x.to)+'</td><td><a href="'+CFG.bsc.explorer+'/tx/'+x.tx+'" target="_blank" rel="noopener">'+x.tx.slice(0,10)+'…</a></td>';
+        xb.appendChild(tr);
+      });
+      if(!xfers.length) xb.innerHTML='<tr><td colspan="4" class="empty">최근 '+CFG.hours+'시간 동안 100,000 SL 이상 전송 없음</td></tr>';
+      var sb=$('swaps'); sb.innerHTML='';
+      swaps.sort(function(a,b){return b.b-a.b;}).slice(0,40).forEach(function(s){
+        var a0i=s.a[1],a1i=s.a[2],a0o=s.a[3],a1o=s.a[4];
+        var slIn=isSL0?a0i:a1i, slOut=isSL0?a0o:a1o, uIn=isSL0?a1i:a0i, uOut=isSL0?a1o:a0o;
+        var buy=slOut>0n; var tr=document.createElement('tr');
+        tr.innerHTML='<td class="mono">'+tsFmt(tsOf(s.b))+'</td><td>'+(buy?'<span class="pill good">매수 SL</span>':'<span class="pill warn">매도 SL</span>')+'</td><td class="num">'+fmt(fu(buy?uIn:uOut),2)+'</td><td class="num">'+fmt(fu(buy?slOut:slIn),0)+'</td><td><a href="'+CFG.bsc.explorer+'/tx/'+s.tx+'" target="_blank" rel="noopener">'+s.tx.slice(0,10)+'…</a></td>';
+        sb.appendChild(tr);
+      });
+      if(!swaps.length) sb.innerHTML='<tr><td colspan="5" class="empty">최근 '+CFG.hours+'시간 동안 거래 없음</td></tr>';
+      lastLogBlock=latest.number;
+    } else {
+      priceSeries.push({t:latest.timestamp,p:price}); if(priceSeries.length>5000) priceSeries.shift(); drawChart(priceSeries);
+    }
+  }
+
+  async function loadOp(){
+    var token=new E.Contract(CFG.op.token,ERC20,op), v=new E.Contract(CFG.op.vesting,VEST,op), tl=new E.Contract(CFG.op.timelock,TL,op);
+    var supply=await token.totalSupply(); var okS=supply===E.parseUnits('1900000000',18);
+    $('opSupply').innerHTML=fmt(fu(supply),0)+'<small>SL</small>'; $('supplyTile').className='tile '+(okS?'ok':'bad');
+    var owner=await v.owner(); var okO=owner.toLowerCase()===CFG.op.timelock.toLowerCase();
+    $('opOwner').textContent=short(owner); $('opOwnerSub').textContent=okO?'타임락 ✓':'타임락 아님 ✗'; $('ownerTile').className='tile '+(okO?'ok':'bad');
+    var committed=await v.totalCommitted(); var rows=[], released=0n;
+    for(var i=0;i<CFG.op.buckets.length;i++){ var k=CFG.op.buckets[i]; var id=E.id(k); var s=await v.schedules(id); var rel=await v.releasable(id); released+=s.released; rows.push({k:k,s:s,rel:rel}); }
+    $('opCommitted').textContent=fmt(fu(committed),0)+' / '+fmt(fu(released),0); $('opReleased').textContent='합계 '+fmt(fu(committed)+fu(released),0)+' (기대 1,540,000,000)';
+    var pend=await tl.isOperationPending(CFG.op.op), ready=await tl.isOperationReady(CFG.op.op), done=await tl.isOperationDone(CFG.op.op), ts=await tl.getTimestamp(CFG.op.op);
+    $('opStatus').textContent=done?'실행 완료':ready?'실행 가능':pend?'대기 중 (48h)':'없음';
+    $('opReady').textContent='ADVISORS 수혜자 변경 · 실행 가능 '+new Date(Number(ts)*1000).toISOString().replace('T',' ').slice(0,16)+'Z';
+    $('opTile').className='tile '+(done?'ok':'');
+    var tb=$('buckets'); tb.innerHTML='';
+    rows.forEach(function(r){ var tr=document.createElement('tr'); tr.innerHTML='<td>'+r.k+'</td><td class="num">'+fmt(fu(r.s.total),0)+'</td><td class="num">'+fmt(fu(r.rel),0)+'</td><td class="num">'+fmt(fu(r.s.released),0)+'</td><td class="mono">'+short(r.s.beneficiary)+'</td>'; tb.appendChild(tr); });
+  }
+
+  function drawChart(series){
+    var c=$('chart'), ctx=c.getContext('2d'); var W=c.width, H=c.height; ctx.clearRect(0,0,W,H);
+    var css=getComputedStyle(document.documentElement); var teal=css.getPropertyValue('--teal').trim()||'#0E8F82', line=css.getPropertyValue('--line-2').trim()||'#eee', muted=css.getPropertyValue('--muted').trim()||'#888';
+    if(!series.length) return;
+    var pad={l:64,r:14,t:12,b:26}; var xs=series.map(function(d){return d.t;}), ys=series.map(function(d){return d.p;});
+    var xmin=Math.min.apply(null,xs), xmax=Math.max.apply(null,xs); if(xmax===xmin) xmax=xmin+1;
+    var ymin=Math.min.apply(null,ys), ymax=Math.max.apply(null,ys); var padY=(ymax-ymin)*0.15||ymax*0.02; ymin-=padY; ymax+=padY;
+    var X=function(t){return pad.l+(t-xmin)/(xmax-xmin)*(W-pad.l-pad.r);}, Y=function(p){return pad.t+(1-(p-ymin)/(ymax-ymin))*(H-pad.t-pad.b);};
+    ctx.strokeStyle=line; ctx.lineWidth=1; ctx.fillStyle=muted; ctx.font='11px IBM Plex Mono, monospace';
+    for(var i=0;i<=4;i++){ var yv=ymin+(ymax-ymin)*i/4, y=Y(yv); ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(W-pad.r,y); ctx.stroke(); ctx.fillText(yv.toPrecision(5),6,y+4); }
+    for(var j=0;j<=6;j++){ var tv=xmin+(xmax-xmin)*j/6; var d=new Date(tv*1000); ctx.fillText(d.toISOString().slice(5,16).replace('T',' '),X(tv)-30,H-8); }
+    ctx.strokeStyle=teal; ctx.lineWidth=2; ctx.beginPath();
+    series.forEach(function(d,i){ var x=X(d.t), y=Y(d.p); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }); ctx.stroke();
+    var last=series[series.length-1]; ctx.fillStyle=teal; ctx.beginPath(); ctx.arc(X(last.t),Y(last.p),4,0,Math.PI*2); ctx.fill();
+  }
+
+  var busy=false;
+  async function refresh(){
+    if(busy) return; busy=true; var dot=$('dot'), st=$('stat');
+    try{ await loadBsc(); await loadOp(); dot.className='dot live'; st.className='stat'; st.innerHTML='<span class="dot live"></span>갱신 '+new Date().toLocaleTimeString('ko-KR'); }
+    catch(e){ dot.className='dot err'; st.className='stat err'; st.innerHTML='<span class="dot err"></span>오류: '+(e.shortMessage||e.message||e).toString().slice(0,90); console.error(e); }
+    busy=false;
+  }
+  $('refreshBtn').addEventListener('click',function(){ lastLogBlock=null; refresh(); });
+  refresh(); setInterval(refresh,CFG.refreshMs);
+
+  var THEME='sl-doc-theme', root=document.documentElement, tb=$('themeBtn');
+  function isDark(){ var t=root.getAttribute('data-theme'); if(t) return t==='dark'; return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function label(){ tb.textContent=isDark()?'라이트 모드':'다크 모드'; }
+  try{ var sv=localStorage.getItem(THEME); if(sv) root.setAttribute('data-theme',sv); }catch(e){}
+  label();
+  tb.addEventListener('click',function(){ var n=isDark()?'light':'dark'; root.setAttribute('data-theme',n); try{localStorage.setItem(THEME,n);}catch(e){} label(); if(priceSeries.length) drawChart(priceSeries); });
+})();
+</script>
+</body>
+</html>
