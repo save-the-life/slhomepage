@@ -5,7 +5,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "ko",
   "pages": {
    "medireport": ["MediReport — 검진 결과를 알아들을 수 있는 말로 | SL Labs", "병원 검진 결과를 불러와 각 검사의 의미를 AI가 검진자 눈높이로 설명합니다. 검사그룹별 분석, 전년도 비교, 종합소견, 결과통보서까지 자동으로."],
-   "sl-watch": ["SL Watch — 손목 위의 의료등급 심전도 | SL Labs", "AI 심장 위험 모니터링을 갖춘 의료등급 ECG 스마트워치. 임상 연구 기준 AUROC 0.88."],
+   "sl-watch": ["SL Watch — 손목 위의 심전도 | SL Labs", "AI 심장 위험 모니터링을 갖춘 ECG 스마트워치. 임상 연구 기준 AUROC 0.88."],
    "vetdental-ai": ["Pet Tooth AI — 12초 만에 끝나는 치과 X-ray 판독 | SL Labs", "X-ray를 올리면 약 12초 안에 소견·병변 위치·처치 계획·A4 보고서까지. 모든 결과는 근거 부위를 영상 위에 표시하고, 수의사 검토를 거치는 초안으로 제공됩니다."]
   },
   "t": {
@@ -157,7 +157,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-cta1": "퍼스트 가디언 되기 →",
    "sw-disc": "SL Watch는 웰니스 제품으로 의료기기가 아니며 질병의 유무를 판단할 수 없습니다.",
    "sw-eyebrow": "검증 네트워크 #3 · SL Watch",
-   "sw-h1": "의료등급 심전도를,<br>손목 위에서.",
+   "sw-h1": "임상 연구로 검증한 심전도를,<br>손목 위에서.",
    "sw-howh2": "동작 방식",
    "sw-hw1": "ECG 샘플링",
    "sw-hw1v": "125 Hz 고정밀",
@@ -193,7 +193,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "zh-CN",
   "pages": {
    "medireport": ["MediReport — 把体检结果说成人话 | SL Labs", "读取医院体检结果，由生成式 AI 以受检者能懂的语言解释每项检查。检查组分析、去年对比、综合意见到结果通知书，全部自动完成。"],
-   "sl-watch": ["SL Watch — 手腕上的医疗级心电图 | SL Labs", "具备 AI 心脏风险监测的医疗级 ECG 智能手表。临床研究基准 AUROC 0.88。"],
+   "sl-watch": ["SL Watch — 手腕上的心电图 | SL Labs", "具备 AI 心脏风险监测的 ECG 智能手表。临床研究基准 AUROC 0.88。"],
    "vetdental-ai": ["Pet Tooth AI — 12 秒完成的牙科 X 光判读 | SL Labs", "上传 X 光片，约 12 秒即可得到所见、病灶位置、处置计划与 A4 报告。所有结果都会在影像上标出依据部位，并以待兽医复核的初稿形式提供。"]
   },
   "t": {
@@ -345,7 +345,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-cta1": "成为首批守护者 →",
    "sw-disc": "SL Watch 是健康类产品，不是医疗器械，无法判断是否患病。",
    "sw-eyebrow": "验证网络 #3 · SL Watch",
-   "sw-h1": "医疗级心电图，<br>戴在手腕上。",
+   "sw-h1": "经临床研究验证的心电图，<br>戴在手腕上。",
    "sw-howh2": "如何运作",
    "sw-hw1": "ECG 采样",
    "sw-hw1v": "125 Hz 高精度",
@@ -381,7 +381,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "ja",
   "pages": {
    "medireport": ["MediReport — 健診結果を、伝わることばで | SL Labs", "病院の健診結果を取り込み、各検査の意味を生成AIが受診者の目線で説明します。検査グループ別の分析、前年比較、総合所見、結果通知書まで自動で。"],
-   "sl-watch": ["SL Watch — 手首の上の医療グレード心電図 | SL Labs", "AI心臓リスクモニタリングを備えた医療グレードECGスマートウォッチ。臨床研究ベースでAUROC 0.88。"],
+   "sl-watch": ["SL Watch — 手首の上の心電図 | SL Labs", "AI心臓リスクモニタリングを備えたECGスマートウォッチ。臨床研究ベースでAUROC 0.88。"],
    "vetdental-ai": ["Pet Tooth AI — 12秒で終わる歯科X線読影 | SL Labs", "X線をアップロードすれば約12秒で所見・病変位置・処置計画・A4レポートまで。すべての結果は根拠部位を画像上に示し、獣医師のレビューを前提とした草案として提供されます。"]
   },
   "t": {
@@ -533,7 +533,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-cta1": "ファーストガーディアンになる →",
    "sw-disc": "SL Watchはウェルネス製品であり医療機器ではなく、疾病の有無を判断することはできません。",
    "sw-eyebrow": "実証ネットワーク #3 · SL Watch",
-   "sw-h1": "医療グレードの心電図を、<br>手首の上で。",
+   "sw-h1": "臨床研究で検証した心電図を、<br>手首の上で。",
    "sw-howh2": "仕組み",
    "sw-hw1": "ECGサンプリング",
    "sw-hw1v": "125 Hz 高精度",
@@ -569,7 +569,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "es",
   "pages": {
    "medireport": ["MediReport — Resultados de chequeo, explicados con claridad | SL Labs", "MediReport lee los resultados de cribado de un hospital y hace que la IA escriba qué significa cada prueba en lenguaje llano: análisis por grupos, comparación interanual, opinión global e informe de resultados."],
-   "sl-watch": ["SL Watch — ECG de grado médico en la muñeca | SL Labs", "Smartwatch con ECG de grado médico y monitorización de riesgo cardiaco por IA. AUROC 0,88 en investigación clínica."],
+   "sl-watch": ["SL Watch — ECG en la muñeca | SL Labs", "Smartwatch con ECG y monitorización de riesgo cardiaco por IA. AUROC 0,88 en investigación clínica."],
    "vetdental-ai": ["Pet Tooth AI — Lectura de radiografías dentales en 12 segundos | SL Labs", "Sube una radiografía y en unos 12 segundos obtén hallazgos, localización de lesiones, plan de tratamiento e informe A4. Cada resultado marca su evidencia en la imagen y llega como borrador para revisión veterinaria."]
   },
   "t": {
@@ -717,11 +717,11 @@ window.SL_PRODUCTS_I18N = {
    "pt-whylede": "La enfermedad dental en animales de compañía apenas se ve por fuera, así que la lectura radiográfica es imprescindible. Pero leer cada imagen con cuidado y luego redactar algo que el propietario entienda consume tiempo real en una clínica en marcha.",
    "sw-aid": "Un modelo CNN-LSTM desarrollado durante 4 años con la <b class=\"text-navy\">Universidad Gachon</b> y el <b class=\"text-navy\">Hospital Universitario Nacional de Seúl</b>, entrenado con más de <b class=\"text-navy\">204.000 segmentos de ECG</b>.",
    "sw-aih2": "La IA",
-   "sw-ainote": "Cifras sobre base de investigación clínica. Certificación SaMD de la KFDA en curso. Hasta obtenerla se describe como apoyo al cribado, no como diagnóstico.",
+   "sw-ainote": "Cifras sobre base de investigación clínica. Certificación SaMD de la MFDS en curso. Hasta obtenerla se describe como apoyo al cribado, no como diagnóstico.",
    "sw-cta1": "Hazte First Guardian →",
    "sw-disc": "SL Watch es un producto de bienestar, no un producto sanitario, y no puede determinar la presencia de enfermedad.",
    "sw-eyebrow": "Red de prueba n.º 3 · SL Watch",
-   "sw-h1": "ECG de grado médico,<br>en la muñeca.",
+   "sw-h1": "ECG validado en clínica,<br>en la muñeca.",
    "sw-howh2": "Cómo funciona",
    "sw-hw1": "Muestreo de ECG",
    "sw-hw1v": "125 Hz de alta precisión",
@@ -739,7 +739,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-m2": "Sensibilidad",
    "sw-m3": "Puntuación F1",
    "sw-m4": "Exactitud",
-   "sw-note": "Dispositivo de bienestar. No sirve para diagnosticar. Las funciones de producto sanitario se ofrecerán tras la autorización de la KFDA.",
+   "sw-note": "Dispositivo de bienestar. No sirve para diagnosticar. Las funciones de producto sanitario se ofrecerán tras la autorización de la MFDS.",
    "sw-s1d": "Un sensor de ECG a 125&nbsp;Hz mide tu ritmo cardiaco de forma continua.",
    "sw-s1t": "Llévalo",
    "sw-s2d": "Un modelo CNN-LSTM criba patrones anómalos cada 10 segundos, en el dispositivo.",
@@ -757,7 +757,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "ru",
   "pages": {
    "medireport": ["MediReport — результаты обследования понятным языком | SL Labs", "MediReport читает результаты скрининга в больнице и поручает ИИ объяснить, что означает каждый анализ: разбор по группам, сравнение с прошлым годом, общее заключение и печатное уведомление о результатах."],
-   "sl-watch": ["SL Watch — ЭКГ медицинского класса на запястье | SL Labs", "Смарт-часы с ЭКГ медицинского класса и ИИ-мониторингом сердечного риска. AUROC 0,88 в клиническом исследовании."],
+   "sl-watch": ["SL Watch — ЭКГ на запястье | SL Labs", "Смарт-часы с ЭКГ и ИИ-мониторингом сердечного риска. AUROC 0,88 в клиническом исследовании."],
    "vetdental-ai": ["Pet Tooth AI — чтение стоматологических снимков за 12 секунд | SL Labs", "Загрузите рентген и примерно за 12 секунд получите находки, локализацию поражений, план лечения и отчёт A4. Каждый результат отмечает своё обоснование на снимке и выдаётся как черновик для проверки ветеринаром."]
   },
   "t": {
@@ -905,11 +905,11 @@ window.SL_PRODUCTS_I18N = {
    "pt-whylede": "Стоматологические болезни у домашних животных почти не видны снаружи, поэтому рентгенологическое чтение обязательно. Но внимательно прочитать каждый снимок, а затем написать то, что поймёт владелец, в работающей клинике занимает вполне реальное время.",
    "sw-aid": "Модель CNN-LSTM, созданная за 4 года совместно с <b class=\"text-navy\">Университетом Гачон</b> и <b class=\"text-navy\">Сеульским национальным университетским госпиталем</b>, обучена более чем на <b class=\"text-navy\">204 000 сегментов ЭКГ</b>.",
    "sw-aih2": "Модель",
-   "sw-ainote": "Показатели на базе клинического исследования. Сертификация SaMD в KFDA в процессе. До её получения описывается как поддержка скрининга, а не диагностика.",
+   "sw-ainote": "Показатели на базе клинического исследования. Сертификация SaMD в MFDS в процессе. До её получения описывается как поддержка скрининга, а не диагностика.",
    "sw-cta1": "Стать First Guardian →",
    "sw-disc": "SL Watch — продукт для благополучия, а не медицинское изделие, и не может определить наличие заболевания.",
    "sw-eyebrow": "Сеть-доказательство №3 · SL Watch",
-   "sw-h1": "ЭКГ медицинского класса —<br>на запястье.",
+   "sw-h1": "Клинически проверенная ЭКГ —<br>на запястье.",
    "sw-howh2": "Как это работает",
    "sw-hw1": "Частота ЭКГ",
    "sw-hw1v": "125 Гц, высокая точность",
@@ -927,7 +927,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-m2": "Чувствительность",
    "sw-m3": "F1-мера",
    "sw-m4": "Точность",
-   "sw-note": "Устройство для благополучия. Не для диагностики. Функции медицинского изделия появятся после сертификации KFDA.",
+   "sw-note": "Устройство для благополучия. Не для диагностики. Функции медицинского изделия появятся после сертификации MFDS.",
    "sw-s1d": "Датчик ЭКГ на 125&nbsp;Гц непрерывно измеряет сердечный ритм.",
    "sw-s1t": "Носите",
    "sw-s2d": "Модель CNN-LSTM отбирает аномальные паттерны каждые 10 секунд прямо на устройстве.",
@@ -945,7 +945,7 @@ window.SL_PRODUCTS_I18N = {
   "htmlLang": "vi",
   "pages": {
    "medireport": ["MediReport — Kết quả khám sức khỏe, nói bằng lời dễ hiểu | SL Labs", "MediReport đọc kết quả tầm soát của bệnh viện và để AI viết ra ý nghĩa của từng xét nghiệm bằng ngôn ngữ đời thường: phân tích theo nhóm, so sánh năm trước, kết luận tổng hợp và phiếu thông báo kết quả."],
-   "sl-watch": ["SL Watch — Điện tâm đồ chuẩn y tế trên cổ tay | SL Labs", "Đồng hồ thông minh có ECG chuẩn y tế và giám sát nguy cơ tim mạch bằng AI. AUROC 0,88 trong nghiên cứu lâm sàng."],
+   "sl-watch": ["SL Watch — Điện tâm đồ trên cổ tay | SL Labs", "Đồng hồ thông minh có ECG và giám sát nguy cơ tim mạch bằng AI. AUROC 0,88 trong nghiên cứu lâm sàng."],
    "vetdental-ai": ["Pet Tooth AI — Đọc phim X-quang nha khoa trong 12 giây | SL Labs", "Tải ảnh X-quang lên và trong khoảng 12 giây có ngay kết luận, vị trí tổn thương, kế hoạch điều trị và báo cáo A4. Mọi kết quả đều đánh dấu bằng chứng trên ảnh và được giao dưới dạng bản nháp chờ bác sĩ thú y duyệt."]
   },
   "t": {
@@ -1093,11 +1093,11 @@ window.SL_PRODUCTS_I18N = {
    "pt-whylede": "Bệnh răng miệng ở thú cưng hầu như không lộ ra bên ngoài, nên việc đọc phim là bắt buộc. Nhưng đọc kỹ từng ảnh rồi viết ra tài liệu mà chủ nuôi hiểu được thì tốn khá nhiều thời gian giữa lúc phòng khám đang chạy.",
    "sw-aid": "Mô hình CNN-LSTM phát triển trong 4 năm cùng <b class=\"text-navy\">Đại học Gachon</b> và <b class=\"text-navy\">Bệnh viện Đại học Quốc gia Seoul</b>, huấn luyện trên hơn <b class=\"text-navy\">204.000 đoạn ECG</b>.",
    "sw-aih2": "Mô hình AI",
-   "sw-ainote": "Các con số dựa trên nghiên cứu lâm sàng. Chứng nhận SaMD của KFDA đang trong quá trình. Cho tới khi được cấp, sản phẩm được mô tả là hỗ trợ sàng lọc, không phải chẩn đoán.",
+   "sw-ainote": "Các con số dựa trên nghiên cứu lâm sàng. Chứng nhận SaMD của MFDS đang trong quá trình. Cho tới khi được cấp, sản phẩm được mô tả là hỗ trợ sàng lọc, không phải chẩn đoán.",
    "sw-cta1": "Trở thành First Guardian →",
    "sw-disc": "SL Watch là sản phẩm chăm sóc sức khỏe, không phải thiết bị y tế, và không thể xác định có bệnh hay không.",
    "sw-eyebrow": "Mạng lưới kiểm chứng #3 · SL Watch",
-   "sw-h1": "Điện tâm đồ chuẩn y tế,<br>ngay trên cổ tay.",
+   "sw-h1": "Điện tâm đồ đã qua nghiên cứu lâm sàng,<br>ngay trên cổ tay.",
    "sw-howh2": "Cách hoạt động",
    "sw-hw1": "Tần số lấy mẫu ECG",
    "sw-hw1v": "125 Hz độ chính xác cao",
@@ -1115,7 +1115,7 @@ window.SL_PRODUCTS_I18N = {
    "sw-m2": "Độ nhạy",
    "sw-m3": "Điểm F1",
    "sw-m4": "Độ chính xác",
-   "sw-note": "Thiết bị chăm sóc sức khỏe. Không dùng để chẩn đoán. Các chức năng thiết bị y tế sẽ được cung cấp sau khi được KFDA cấp phép.",
+   "sw-note": "Thiết bị chăm sóc sức khỏe. Không dùng để chẩn đoán. Các chức năng thiết bị y tế sẽ được cung cấp sau khi được MFDS cấp phép.",
    "sw-s1d": "Cảm biến ECG 125&nbsp;Hz đo nhịp tim liên tục.",
    "sw-s1t": "Đeo",
    "sw-s2d": "Mô hình CNN-LSTM sàng lọc các mẫu bất thường mỗi 10 giây, ngay trên thiết bị.",
