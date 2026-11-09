@@ -10,6 +10,7 @@ const fail = (file, msg) => problems.push(`${file}: ${msg}`);
 
 const PAGES = [
   'index.html',
+  'launchpad.html',
   ...readdirSync(join(ROOT, 'products')).filter(f => f.endsWith('.html')).map(f => `products/${f}`),
   ...readdirSync(join(ROOT, 'apps')).filter(f => f.endsWith('.html')).map(f => `apps/${f}`),
 ];
@@ -45,6 +46,7 @@ try {
     index: { data: loadPack('i18n.js', 'SL_I18N'), read: p => p.translations },
     products: { data: loadPack('products/products-i18n.js', 'SL_PRODUCTS_I18N'), read: p => p.t },
     apps: { data: loadPack('apps/apps-i18n.js', 'SL_APPS_I18N'), read: p => p.t },
+    launchpad: { data: loadPack('launchpad-i18n.js', 'SL_LP_I18N'), read: p => p.t },
   };
 } catch (e) {
   fail('i18n', `a translation pack failed to evaluate: ${e.message}`);
@@ -53,6 +55,7 @@ try {
 
 const packFor = page =>
   page === 'index.html' ? packs?.index
+  : page === 'launchpad.html' ? packs?.launchpad
   : page.startsWith('products/') ? packs?.products
   : packs?.apps;
 

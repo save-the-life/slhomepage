@@ -33,3 +33,9 @@ docs/
 SL_Protocol_Whitepaper_v2.1.pdf
 whitepaper.html
 img/img.zip
+
+# Client-provided grant forms (0xLabs) - do not publish (public repo)
+Reporting SL Labs X 0xLabs/
+
+# Playwright MCP screenshots / logs (local verification only)
+.playwright-mcp/
