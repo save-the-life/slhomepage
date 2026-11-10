@@ -2,5 +2,9 @@
   "framework": null,
   "buildCommand": null,
   "installCommand": null,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/ir", "destination": "/launchpad#ir", "permanent": false },
+    { "source": "/presale", "destination": "/launchpad", "permanent": false }
+  ]
 }
