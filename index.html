@@ -238,6 +238,10 @@ tailwind.config = {
         <a href="#proof" class="group inline-flex items-center gap-2 rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="hero-cta-proof">
           See the Proof <span aria-hidden="true" class="transition-transform group-hover:translate-x-0.5">→</span>
         </a>
+        <a href="#ir" id="heroIrBtn" class="inline-flex items-center gap-2 rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition">
+          <svg class="w-4 h-4 text-teal" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <span data-i18n="hero-cta-ir">Watch the IR video</span>
+        </a>
         <a href="whitepaper.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="hero-cta-wp">
           Read the Whitepaper
         </a>
@@ -297,6 +301,35 @@ tailwind.config = {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTOR RELATIONS & LAUNCHPAD -->
+<section id="ir" class="bg-white border-b border-line">
+  <div class="max-w-content mx-auto px-6 py-24 grid lg:grid-cols-[1.1fr_.9fr] gap-14 items-center">
+    <div class="reveal min-w-0">
+      <div class="rounded-2xl overflow-hidden shadow-soft ring-1 ring-line aspect-video bg-ink">
+        <video id="irVideo" class="w-full h-full" controls preload="none" playsinline poster="ir/sl-labs-ir-2026-poster.jpg" width="1280" height="720">
+          <source src="ir/sl-labs-ir-2026.mp4" type="video/mp4">
+          <a href="ir/sl-labs-ir-2026.mp4">Download the IR video (MP4)</a>
+        </video>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow text-teal mb-5"><span class="mono-label text-slate2/70 mr-3">[IR]</span>Investor Relations &amp; Launchpad</p>
+      <h2 class="text-[30px] sm:text-[40px] font-extrabold text-navy leading-tight" data-i18n="ir-h2">Watch the IR video. Read the deck. Apply for the presale.</h2>
+      <p class="mt-6 text-slate2 text-[17px] leading-relaxed" data-i18n="ir-p">Our investor materials are public: a five-minute IR video and the 16-slide IR deck. The $SL presale takes applications on partner launchpads, through our ambassadors and directly on this site.</p>
+      <ul class="mt-7 space-y-2.5 text-[15px] text-navy">
+        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i1">IR video · 4 min 46 s · English</span></li>
+        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i2">IR deck · 16 slides · PDF</span></li>
+        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i3">Presale application · direct or via ambassadors</span></li>
+      </ul>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="launchpad.html" class="inline-flex items-center gap-2 rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="ir-cta1">Go to the Launchpad <span aria-hidden="true">→</span></a>
+        <a href="ir/sl-labs-ir-deck-2026.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="ir-cta2">Download the IR deck (PDF) <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="mt-6 text-[12px] text-slate2 leading-relaxed" data-i18n="ir-disc">Not an offer or investment advice. The presale is unavailable to residents of Korea, the U.S., mainland China and sanctioned jurisdictions.</p>
     </div>
   </div>
 </section>
@@ -598,35 +631,6 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- INVESTOR RELATIONS & LAUNCHPAD -->
-<section id="ir" class="bg-paper border-b border-line">
-  <div class="max-w-content mx-auto px-6 py-24 grid lg:grid-cols-[1.1fr_.9fr] gap-14 items-center">
-    <div class="reveal min-w-0">
-      <div class="rounded-2xl overflow-hidden shadow-soft ring-1 ring-line aspect-video bg-ink">
-        <video class="w-full h-full" controls preload="none" playsinline poster="ir/sl-labs-ir-2026-poster.jpg" width="1280" height="720">
-          <source src="ir/sl-labs-ir-2026.mp4" type="video/mp4">
-          <a href="ir/sl-labs-ir-2026.mp4">Download the IR video (MP4)</a>
-        </video>
-      </div>
-    </div>
-    <div class="reveal">
-      <p class="eyebrow text-teal mb-5"><span class="mono-label text-slate2/70 mr-3">[IR]</span>Investor Relations &amp; Launchpad</p>
-      <h2 class="text-[30px] sm:text-[40px] font-extrabold text-navy leading-tight" data-i18n="ir-h2">Watch the IR video. Read the deck. Apply for the presale.</h2>
-      <p class="mt-6 text-slate2 text-[17px] leading-relaxed" data-i18n="ir-p">Our investor materials are public: a five-minute IR video and the 16-slide IR deck. The $SL presale takes applications on partner launchpads, through our ambassadors and directly on this site.</p>
-      <ul class="mt-7 space-y-2.5 text-[15px] text-navy">
-        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i1">IR video · 4 min 46 s · English</span></li>
-        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i2">IR deck · 16 slides · PDF</span></li>
-        <li class="flex gap-2.5"><svg class="w-4 h-4 mt-1 shrink-0 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4 10-10"/></svg> <span data-i18n="ir-i3">Presale application · direct or via ambassadors</span></li>
-      </ul>
-      <div class="mt-8 flex flex-wrap items-center gap-3">
-        <a href="launchpad.html" class="inline-flex items-center gap-2 rounded-xl bg-navy text-white font-semibold px-6 py-3.5 hover:bg-ink transition shadow-soft" data-i18n="ir-cta1">Go to the Launchpad <span aria-hidden="true">→</span></a>
-        <a href="ir/sl-labs-ir-deck-2026.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-white border border-line text-navy font-semibold px-6 py-3.5 hover:border-navy transition" data-i18n="ir-cta2">Download the IR deck (PDF) <span aria-hidden="true">↗</span></a>
-      </div>
-      <p class="mt-6 text-[12px] text-slate2 leading-relaxed" data-i18n="ir-disc">Not an offer or investment advice. The presale is unavailable to residents of Korea, the U.S., mainland China and sanctioned jurisdictions.</p>
-    </div>
-  </div>
-</section>
-
 <!-- RESEARCH -->
 <section id="research" class="bg-white">
   <div class="max-w-content mx-auto px-6 py-24 grid lg:grid-cols-[.9fr_1.1fr] gap-14 items-center">
@@ -800,6 +804,14 @@ tailwind.config = {
     Array.prototype.forEach.call(g.children, function(c,i){ c.style.animationDelay=Math.min(i*step,480)+'ms'; });
     if(g.closest('#hero')){ g.classList.add('s-in'); } else { sio.observe(g); }
   });
+
+  // hero "Watch the IR video": scroll to the player and start it (click = user gesture, so play() is allowed)
+  var irBtn=document.getElementById('heroIrBtn'), irVid=document.getElementById('irVideo');
+  if(irBtn && irVid){
+    irBtn.addEventListener('click', function(){
+      try{ var pr=irVid.play(); if(pr && pr.catch) pr.catch(function(){}); }catch(e){}
+    });
+  }
 
   // ECG runs only while visible
   var eio=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('play', e.isIntersecting); }); }, {threshold:0});
